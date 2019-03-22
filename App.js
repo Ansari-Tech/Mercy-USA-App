@@ -5,11 +5,13 @@ import HomeScreen from "./HomeScreen";
 import NavigationService from "./NavigationService";
 import AssetsScreen from "./AssetsScreen";
 import Loans from "./Loans";
+import Locations from "./Locations"
 const AppNavigator = createStackNavigator(
 	{
 		Home: HomeScreen,
 		Assets: AssetsScreen,
-		Loans: Loans
+		Loans: Loans,
+		Locations: Locations
 	},
 	{
 		initialRouteName: "Home"
