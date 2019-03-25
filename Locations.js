@@ -19,6 +19,9 @@ const CARD_HEIGHT = height / 3;
 const CARD_WIDTH = width - 60;
 
 export default class Locations extends React.Component {
+  static navigationOptions = {
+    title: "Explore our locations"
+  };
   state = {
     markers: [
       {
@@ -87,9 +90,9 @@ export default class Locations extends React.Component {
       }
     ],
     region: {
-      latitude: 32.360406,
+      latitude: 37.360406,
       longitude: -83.480501,
-      latitudeDelta: 35.0,
+      latitudeDelta: 30.0,
       longitudeDelta: 0
     }
   };
@@ -116,7 +119,7 @@ export default class Locations extends React.Component {
           let lon = this.state.markers[index].coordinate.longitude;
           this.map.animateToRegion(
             {
-              latitude: lat - 10,
+              latitude: lat - 5,
               longitude: lon,
               latitudeDelta: this.state.region.latitudeDelta,
               longitudeDelta: this.state.region.longitudeDelta
@@ -208,7 +211,10 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowRadius: 5,
     shadowOpacity: 0.3,
-    shadowOffset: { x: 2, y: -2 },
+    shadowOffset: {
+      x: 2,
+      y: -2
+    },
     width: width - 80,
     margin: 10,
     height: 200,
