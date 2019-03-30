@@ -9,7 +9,8 @@ import Locations from "./Locations";
 import Qibla from "./Qibla";
 import Currency from "./Currency";
 import Donate from "./Donate";
-
+import Business from "./Business";
+import ZakatResults from "./ZakatResults";
 const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
@@ -18,7 +19,9 @@ const AppNavigator = createStackNavigator(
     Locations: Locations,
     Qibla: Qibla,
     Donate: Donate,
-    Currency: Currency
+    Currency: Currency,
+    Business: Business,
+    ZakatResults: ZakatResults
   },
   {
     initialRouteName: "Home"

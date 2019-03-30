@@ -30,7 +30,7 @@ export default class HomeScreen extends React.Component {
           <Image
             source={require("./assets/logo.png")}
             style={{
-              width: 250,
+              width: width - 20,
               height: 100,
               alignSelf: "center",
               resizeMode: "contain"
@@ -49,7 +49,7 @@ export default class HomeScreen extends React.Component {
               alignSelf: "center",
               resizeMode: "contain"
             }}>
-            <Text style={styles.whatWeDo}>What We Do & Where We Do it</Text>
+            <Text style={styles.whatWeDo}>View our global locations</Text>
           </ImageBackground>
         </TouchableOpacity>
 
@@ -109,7 +109,10 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     fontSize: 40,
     color: "#fff",
-    fontWeight: "600"
+    fontWeight: "600",
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 1,
+    textShadowColor: "#000"
   },
   itemCode: {
     fontWeight: "600",

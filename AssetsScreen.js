@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Button, Text, StyleSheet, ScrollView } from "react-native";
 import NavigationService from "./NavigationService";
-import { Input } from "react-native-elements";
+import { Input, Overlay } from "react-native-elements";
 const Dimensions = require("Dimensions");
 const { width } = Dimensions.get("window");
 
@@ -9,15 +9,34 @@ export default class AssetsScreen extends React.Component {
   static navigationOptions = {
     title: "Enter your Assets"
   };
+  constructor(props) {
+    super(props);
+    this.state = { isVisible: true };
+  }
   render() {
     return (
       <View style={styles.mainView}>
+        <Overlay
+          isVisible={this.state.isVisible}
+          onBackdropPress={() => this.setState({ isVisible: false })}>
+          <View>
+            <Text>Evaluate Your Assets.</Text>
+            <Text>Assets text placeholder here</Text>
+            <Button
+              title="Get Started"
+              onPress={() => {
+                this.setState({ isVisible: false });
+              }}
+            />
+          </View>
+        </Overlay>
         <Text style={styles.inputText}>
-          Enter the amount of cash you own in hand and in savings
+          Non-delinquent loans (money you loaned to otheres and expect to be
+          repaid).
         </Text>
         <Input
           style={styles.input}
-          placeholder="Cash in hand / in bank"
+          placeholder="Non-Delinquent Loans"
           keyboardType="numeric"
           leftIcon={{
             type: "material-community",
@@ -75,7 +94,6 @@ export default class AssetsScreen extends React.Component {
               NavigationService.navigate("Loans", {
                 asset: assetsInput
               });
-              //this.scrollView.scrollTo({ x: width * 2 });
             }}
           />
         </View>
@@ -90,8 +108,6 @@ const styles = StyleSheet.create({
     width: width
   },
   btnView: {
-    position: "absolute",
-    bottom: 35,
     alignSelf: "center"
   },
   btn: {

@@ -12,9 +12,9 @@ import { Input, Overlay } from "react-native-elements";
 const Dimensions = require("Dimensions");
 const { width } = Dimensions.get("window");
 
-export default class Loans extends React.Component {
+export default class Business extends React.Component {
   static navigationOptions = {
-    title: "Enter your Loans"
+    title: "Business & Real Estate"
   };
   constructor(props) {
     super(props);
@@ -38,66 +38,66 @@ export default class Loans extends React.Component {
           </View>
         </Overlay>
         <Text style={styles.inputText}>
-          Non-delinquent loans (money you loaned to otheres and expect to be
-          repaid).
+          Business Inventory (market value of inventory)
         </Text>
         <Input
           style={styles.input}
-          placeholder="Cash in hand / in bank"
+          placeholder="Business Inventory"
           keyboardType="numeric"
           leftIcon={{
             type: "material-community",
             name: "bank"
           }}
-          onChangeText={ndLoans =>
+          onChangeText={inventory =>
             this.setState({
-              ndLoans
+              inventory
             })
           }
         />
-        <Text style={styles.inputText}>Shares of Stock</Text>
+        <Text style={styles.inputText}>
+          Real Estate Value (Designed for sale)
+        </Text>
         <Input
-          placeholder="Shares of Stock"
+          placeholder="Real Estate Value"
           keyboardType="numeric"
           leftIcon={{
             type: "material-community",
             name: "coins"
           }}
-          onChangeText={stock =>
+          onChangeText={realEstate =>
             this.setState({
-              stock
+              realEstate
             })
           }
         />
-        <Text style={styles.inputText}>
-          Money you borrowed for business purposes
-        </Text>
+        <Text style={styles.inputText}>Net Profits from business</Text>
         <Input
-          placeholder="Money  borrowed"
+          placeholder="MNet Profits from business"
           keyboardType="numeric"
           leftIcon={{
             type: "material-community",
             name: "ring"
           }}
-          onChangeText={loans =>
+          onChangeText={profit =>
             this.setState({
-              loans
+              profit
             })
           }
         />
         <View style={styles.btnView}>
           <Button
             style={styles.btn}
-            title="Business & Real Estate >>"
+            title="View my Zakat"
             onPress={() => {
-              let loansInput = {
-                ndLoans: this.state.ndLoans,
-                stock: this.state.stock,
-                loans: this.state.loans
+              let businessInput = {
+                inventory: this.state.inventory,
+                realEstate: this.state.realEstate,
+                profit: this.state.profit
               };
-              NavigationService.navigate("Business", {
+              NavigationService.navigate("ZakatResults", {
                 asset: this.params.asset,
-                loan: loansInput
+                loan: this.params.loan,
+                business: businessInput
               });
             }}
           />
