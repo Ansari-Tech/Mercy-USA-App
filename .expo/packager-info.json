@@ -1,9 +1,10 @@
 {
   "packagerPort": 19001,
-  "packagerPid": 5768,
+  "packagerPid": 10332,
   "expoServerNgrokUrl": "https://x3-dsq.anonymous.mercyusaapp.exp.direct",
   "packagerNgrokUrl": "https://packager.x3-dsq.anonymous.mercyusaapp.exp.direct",
-  "ngrokPid": 10520,
+  "ngrokPid": 9328,
   "devToolsPort": 19002,
-  "expoServerPort": 19000
+  "expoServerPort": 19000,
+  "webpackServerPort": null
 }
