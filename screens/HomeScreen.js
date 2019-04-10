@@ -23,15 +23,15 @@ export default class HomeScreen extends React.Component {
 			{ name: "Donate", desc: "description here", id: "Donate" },
 			{ name: "Currency Conversion", desc: "description here", id: "Donate" }
 		];
-
+ 
 		return (
 			<View style={styles.container}>
-				<View style={{ flex: 0.5 }}>
+				<View style={{ flex: .75}}>
 					<Image
 						source={require("../assets/logo.png")}
 						style={{
 							width: width - 20,
-							height: 100,
+							height: height - (height / 1.25),
 							alignSelf: "center",
 							resizeMode: "contain"
 						}}
@@ -45,7 +45,7 @@ export default class HomeScreen extends React.Component {
 						source={require("../assets/whatwedo.jpg")}
 						style={{
 							width: width - 20,
-							height: height / 4,
+							height: height / 6,
 							alignSelf: "center",
 							resizeMode: "contain"
 						}}>
@@ -54,7 +54,7 @@ export default class HomeScreen extends React.Component {
 				</TouchableOpacity>
 
 				<FlatGrid
-					itemDimension={130}
+					itemDimension={width / 2.25}
 					items={items}
 					style={styles.gridView}
 					// staticDimension={300}

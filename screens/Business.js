@@ -94,12 +94,18 @@ export default class Business extends React.Component {
 								realEstate: this.state.realEstate,
 								profit: this.state.profit
 							};
+							if(this.state.inventory == null
+								|| this.state.realEstate == null 
+						        || this.state.profit == null) {
+								Alert.alert("Please fill out all fields.")
+							}else {
 							NavigationService.navigate("ZakatResults", {
 								asset: this.params.asset,
 								loan: this.params.loan,
 								business: businessInput
 							});
 						}}
+						}
 					/>
 				</View>
 			</View>

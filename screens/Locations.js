@@ -92,8 +92,8 @@ export default class Locations extends React.Component {
     region: {
       latitude: 37.360406,
       longitude: -83.480501,
-      latitudeDelta: 30.0,
-      longitudeDelta: 0
+      latitudeDelta: 20.0,
+      longitudeDelta: 20.0,
     }
   };
 

@@ -1,10 +1,11 @@
 import React from "react";
-import { View, Button, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Button, Text, StyleSheet, ScrollView, Alert} from "react-native";
 import NavigationService from "../NavigationService";
 import { Input, Overlay } from "react-native-elements";
 const Dimensions = require("Dimensions");
-const { width } = Dimensions.get("window");
-
+const { width } = Dimensions.get("window").width;
+const { height } = Dimensions.get("window").height;
+const {modalHeight} = height - 50;
 export default class AssetsScreen extends React.Component {
 	static navigationOptions = {
 		title: "Enter your Assets"
@@ -19,15 +20,30 @@ export default class AssetsScreen extends React.Component {
 				<Overlay
 					isVisible={this.state.isVisible}
 					onBackdropPress={() => this.setState({ isVisible: false })}>
-					<View>
-						<Text>Evaluate Your Assets.</Text>
-						<Text>Assets text placeholder here</Text>
-						<Button
+					<View style={styles.modalView}>
+					<Text style={styles.modalTitle}>Evaluating Your Assets</Text>
+					<View style={styles.modalSection}>
+						<Text style={styles.modalSubtitle}>Money Loaned to Others.</Text>
+						<Text style={styles.modalBody}>Any money you have loaned to friends, family, or acquaintances that you expect to be payed back in reasonable amount of time. 
+						An example could be money lent to a family member to buy a car, or money borrowed by a friend for bills.</Text>
+					</View>
+					<View style={styles.modalSection}>
+						<Text style={styles.modalSubtitle}>The Value of Gold.</Text>
+						<Text style={styles.modalBody}>This could include any gold you own that is not in the form of jewlery, such as gold bars or coins.</Text>
+					</View>
+					<View style={styles.modalSection}>
+						<Text style={styles.modalSubtitle}>Large Amounts of Jewlery.</Text>
+						<Text style={styles.modalBody}>While jewlery doesn't count towards the amount of gold you own, large collections of jewlery worth unusually high amounts of money should be counted under this category.</Text>
+					</View>
+					<View style={styles.modalButton}>
+					<Button 
+							style={styles.modalButton}
 							title="Get Started"
 							onPress={() => {
 								this.setState({ isVisible: false });
 							}}
 						/>
+					</View>
 					</View>
 				</Overlay>
 				<Text style={styles.inputText}>
@@ -36,6 +52,8 @@ export default class AssetsScreen extends React.Component {
 				</Text>
 				<Input
 					style={styles.input}
+					shake={true}
+
 					placeholder="Non-Delinquent Loans"
 					keyboardType="numeric"
 					leftIcon={{
@@ -91,9 +109,15 @@ export default class AssetsScreen extends React.Component {
 								gold: this.state.gold,
 								jewlery: this.state.jewlery
 							};
-							NavigationService.navigate("Loans", {
-								asset: assetsInput
-							});
+							if(this.state.cash == null
+								|| this.state.gold == null 
+						        || this.state.jewlery == null) {
+								Alert.alert("Please fill out all fields.")
+							}else {
+								NavigationService.navigate("Loans", {
+									asset: assetsInput
+								});
+							}
 						}}
 					/>
 				</View>
@@ -127,5 +151,28 @@ const styles = StyleSheet.create({
 	inputText: {
 		textAlign: "center",
 		paddingTop: 20
+	},
+	modalView: {
+		flex: 3,
+		justifyContent: 'space-evenly',
+	},
+	modalTitle: {
+		fontSize: 25,
+		color: "#045484"
+
+	},
+	modalSection: {
+	},
+	modalSubtitle: {
+		fontSize: 20
+	},
+	modalBody: {
+
+	},
+	modalButton: {
+		position: "absolute",
+		bottom: 0,
+		left: 0,
+		right: 0
 	}
 });

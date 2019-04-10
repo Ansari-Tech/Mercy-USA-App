@@ -95,10 +95,16 @@ export default class Loans extends React.Component {
 								stock: this.state.stock,
 								loans: this.state.loans
 							};
+							if(this.state.ndLoans == null
+								|| this.state.stock == null 
+						        || this.state.loans == null) {
+								Alert.alert("Please fill out all fields.")
+							}else {
 							NavigationService.navigate("Business", {
 								asset: this.params.asset,
 								loan: loansInput
 							});
+							}
 						}}
 					/>
 				</View>
