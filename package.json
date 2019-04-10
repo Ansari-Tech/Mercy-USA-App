@@ -18,6 +18,7 @@
     "react-native-maps": "^0.23.0",
     "react-native-super-grid": "^3.0.3",
     "react-native-video": "^4.4.0",
+    "react-native-webview-bridge": "^0.40.1",
     "react-navigation": "^3.4.1"
   },
   "devDependencies": {

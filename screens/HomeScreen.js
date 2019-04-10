@@ -14,14 +14,25 @@ const { width, height } = Dimensions.get("window");
 
 export default class HomeScreen extends React.Component {
 	static navigationOptions = {
-		header: null
-	};
+		headerBackground:  (
+			<Image
+					source={require("../assets/logo.png")}
+					style={{
+						width: "auto",
+						height: "auto",
+						alignSelf: "center",
+						resizeMode: "contain"
+					}}
+				/>
+		)
+	}
 	render() {
 		const items = [
-			{ name: "Zakat Calculator", desc: "description here", id: "Assets" },
-			{ name: "Qibla Compass", desc: "description here", id: "Qibla" },
-			{ name: "Donate", desc: "description here", id: "Donate" },
-			{ name: "Currency Conversion", desc: "description here", id: "Donate" }
+			{ name: "Zakat Calculator", desc: "Donate to our Zakat Fund", id: "Assets" },
+			//{ name: "Qibla Compass", desc: "description here", id: "Qibla" },
+			{ name: "Donate", desc: "Make a General Donation", id: "Donate" },
+			//{ name: "Currency Conversion", desc: "description here", id: "Donate" },
+			//{ name: "Settings", desc: "", id: "Settings"}
 		];
  
 		return (
@@ -37,7 +48,8 @@ export default class HomeScreen extends React.Component {
 						}}
 					/>
 				</View>
-				<TouchableOpacity
+				
+ {/*}				<TouchableOpacity
 					onPress={() => {
 						NavigationService.navigate("Locations");
 					}}>
@@ -52,9 +64,9 @@ export default class HomeScreen extends React.Component {
 						<Text style={styles.whatWeDo}>View our global locations</Text>
 					</ImageBackground>
 				</TouchableOpacity>
-
+					*/}
 				<FlatGrid
-					itemDimension={width / 2.25}
+					itemDimension={width -10}
 					items={items}
 					style={styles.gridView}
 					// staticDimension={300}
@@ -91,8 +103,9 @@ const styles = StyleSheet.create({
 		padding: 20
 	},
 	gridView: {
-		marginTop: 20,
-		flex: 1
+		marginTop: 0,
+		flex: 1,
+		alignSelf: "center"
 	},
 	itemContainer: {
 		justifyContent: "flex-end",

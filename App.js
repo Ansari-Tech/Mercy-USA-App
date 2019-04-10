@@ -1,6 +1,6 @@
 import React from "react";
-import { StatusBar } from "react-native";
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { StatusBar, Image } from "react-native";
+import { createStackNavigator, createAppContainer, createBottomTabNavigator } from "react-navigation";
 import HomeScreen from "./screens/HomeScreen";
 import NavigationService from "./NavigationService";
 import AssetsScreen from "./screens/AssetsScreen";
@@ -11,6 +11,17 @@ import Currency from "./screens/Currency";
 import Donate from "./screens/Donate";
 import Business from "./screens/Business";
 import ZakatResults from "./screens/ZakatResults";
+import Settings from "./screens/Settings";
+
+const TabNavigator = createBottomTabNavigator({
+	Home: {
+		 screen: HomeScreen,
+		},
+	Locations: Locations,
+	Settings: Settings,
+  }
+  );
+
 const AppNavigator = createStackNavigator(
 	{
 		Home: HomeScreen,
@@ -21,15 +32,22 @@ const AppNavigator = createStackNavigator(
 		Donate: Donate,
 		Currency: Currency,
 		Business: Business,
-		ZakatResults: ZakatResults
+		ZakatResults: ZakatResults,
+		Settings: Settings,
+		TabNavigator: {
+			screen: TabNavigator,
+			navigationOptions: {
+				header: null
+			}
+		}
 	},
 	{
-		initialRouteName: "Home"
+		initialRouteName: "TabNavigator"
 	}
 );
 
-const AppContainer = createAppContainer(AppNavigator);
 
+const AppContainer = createAppContainer(AppNavigator);
 export default class App extends React.Component {
 	componentDidMount() {
 		StatusBar.setHidden(true);
