@@ -12,6 +12,7 @@ import Donate from "./screens/Donate";
 import Business from "./screens/Business";
 import ZakatResults from "./screens/ZakatResults";
 import Settings from "./screens/Settings";
+import UserInfo from "./screens/UserInfo";
 
 const TabNavigator = createBottomTabNavigator({
 	Home: {
@@ -34,6 +35,7 @@ const AppNavigator = createStackNavigator(
 		Business: Business,
 		ZakatResults: ZakatResults,
 		Settings: Settings,
+		UserInfo, UserInfo,
 		TabNavigator: {
 			screen: TabNavigator,
 			navigationOptions: {

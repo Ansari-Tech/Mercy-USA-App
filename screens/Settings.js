@@ -7,21 +7,25 @@ const { width } = Dimensions.get("window");
 const aboutSection = [
     {
       title: 'About',
-      icon: 'av-timer'
+      icon: 'av-timer',
+      screen: 'About'
     },
     {
       title: 'Privacy Policy',
-      icon: 'flight-takeoff'
+      icon: 'flight-takeoff',
+      screen: 'privacy'
     },
   ]
   const settingsSection = [
     {
-      title: 'About',
-      icon: 'av-timer'
+      title: 'User Information',
+      icon: 'av-timer',
+      screen: 'UserInfo'
     },
     {
       title: 'Notification Settings',
-      icon: 'flight-takeoff'
+      icon: 'flight-takeoff',
+      screen: 'Notifications'
     },
   ]
 export default class Settings extends React.Component {
@@ -36,6 +40,9 @@ export default class Settings extends React.Component {
                 <View style={{padding: 10}}>{
                     settingsSection.map((item, i) => (
                     <ListItem
+                    onPress = {() => {
+                      NavigationService.navigate(item.screen)
+                    }}
                     key={i}
                     chevron
                     topDivider
@@ -46,6 +53,9 @@ export default class Settings extends React.Component {
               <View style={{padding: 10}}>{
                     aboutSection.map((item, i) => (
                         <ListItem
+                        onPress = {() => {
+                          NavigationService.navigate(item.screen)
+                        }}
                         key={i}
                         chevron
                         topDivider
