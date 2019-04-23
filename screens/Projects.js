@@ -18,9 +18,9 @@ const { width, height } = Dimensions.get("window");
 const CARD_HEIGHT = height / 3;
 const CARD_WIDTH = width - 60;
 
-export default class Locations extends React.Component {
+export default class Projects extends React.Component {
   static navigationOptions = {
-    title: "Offices"
+    title: "Projects"
   };
   state = {
     markers: [

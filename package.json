@@ -16,7 +16,10 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-elements": "^1.1.0",
     "react-native-maps": "^0.23.0",
+    "react-native-masked-text": "^1.12.2",
+    "react-native-material-kit": "^0.5.1",
     "react-native-super-grid": "^3.0.3",
+    "react-native-text-input-mask": "^1.0.1",
     "react-native-video": "^4.4.0",
     "react-native-webview-bridge": "^0.40.1",
     "react-navigation": "^3.4.1"
