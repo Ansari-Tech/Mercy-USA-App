@@ -8,7 +8,7 @@ import {
   Alert
 } from "react-native";
 import NavigationService from "../NavigationService";
-import { Input, Overlay } from "react-native-elements";
+import { Divider, Overlay } from "react-native-elements";
 import { MKTextField } from "react-native-material-kit";
 import { TextInputMask } from "react-native-masked-text";
 
@@ -35,13 +35,43 @@ export default class Business extends React.Component {
           isVisible={this.state.isVisible}
           onBackdropPress={() => this.setState({ isVisible: false })}
         >
-          <View>
-            <Button
-              title="Get Started"
-              onPress={() => {
-                this.setState({ isVisible: false });
-              }}
-            />
+          <View style={styles.modalView}>
+            <Text style={styles.modalTitle}>Lending & Loans</Text>
+            <Divider style={{ backgroundColor: "blue" }} />
+            <ScrollView style={{ flex: 1, alignContent: "center" }}>
+              <View style={styles.modalSection}>
+                <Text style={styles.modalSubtitle}>Business Inventory.</Text>
+                <Text style={styles.modalBody}>
+                  If you own a business, the value of any inventory you own for
+                  the purpose of resale should be included in this number.
+                </Text>
+              </View>
+              <View style={styles.modalSection}>
+                <Text style={styles.modalSubtitle}>Real Estate.</Text>
+                <Text style={styles.modalBody}>
+                  If you own a house, land, or other real estate that you
+                  purchased for the purpose of sale, the value of that real
+                  estate should be included here.
+                </Text>
+              </View>
+              <View style={styles.modalSection}>
+                <Text style={styles.modalSubtitle}>Profits From Business.</Text>
+                <Text style={styles.modalBody}>
+                  Net profits earned in the last year should be added to this
+                  total.
+                </Text>
+              </View>
+            </ScrollView>
+            <Divider style={{ backgroundColor: "blue" }} />
+            <View>
+              <Button
+                style={styles.modalButton}
+                title="Get Started"
+                onPress={() => {
+                  this.setState({ isVisible: false });
+                }}
+              />
+            </View>
           </View>
         </Overlay>
         <Text style={styles.inputText}>
@@ -150,9 +180,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: width
   },
-  btnView: {
-    alignSelf: "center"
-  },
   btn: {
     alignSelf: "center",
     color: "#860101"
@@ -170,5 +197,26 @@ const styles = StyleSheet.create({
   inputText: {
     textAlign: "center",
     paddingTop: 20
+  },
+  modalView: {
+    flex: 1
+  },
+  modalTitle: {
+    fontSize: 25,
+    color: "#045484",
+    alignSelf: "center"
+  },
+  modalSection: {
+    padding: 25
+  },
+  modalSubtitle: {
+    fontSize: 25
+  },
+  modalBody: {},
+  modalButton: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0
   }
 });

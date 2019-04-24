@@ -17,7 +17,13 @@ import NavigationService from "../NavigationService";
 import { Input, Overlay, Card } from "react-native-elements";
 const Dimensions = require("Dimensions");
 const { width, height } = Dimensions.get("window");
+import { MKTextField } from "react-native-material-kit";
+import { TextInputMask } from "react-native-masked-text";
 import { Constants } from "expo";
+const cashText = MKTextField.textfield()
+  .withPlaceholder("Cash in hand")
+  .build();
+
 export default class Donate extends React.Component {
   constructor(props) {
     super(props);
@@ -53,7 +59,7 @@ export default class Donate extends React.Component {
       designation: "Syria Humanitarian Relief",
       comment: "",
       isLoading: true,
-      amount: 0,
+      amount: "$0.00",
       isVisible: false
     };
   }
@@ -81,13 +87,15 @@ export default class Donate extends React.Component {
   }
   donate(url) {
     const donations = Object.assign({}, this.state.donations);
+    let trimmedAmount = this.state.amount.replace("$", "");
+    this.state.amount = trimmedAmount;
     url +=
       "&donations[]=" +
       this.state.amount +
       "|" +
       this.state.designation +
       "&total=" +
-      this.state.amount +
+      trimmedAmount +
       "&comments=" +
       this.state.comment;
     console.log(url);
@@ -141,7 +149,15 @@ export default class Donate extends React.Component {
         />
       );
       const placeHolder = (
-        <Text style={{ fontSize: 20 }}>
+        <Text
+          style={{
+            fontSize: 20,
+            justifyContent: "center",
+            alignSelf: "center",
+            alignContent: "center",
+            color: "#ecf0f1"
+          }}
+        >
           Your past donations will appear here.
         </Text>
       );
@@ -275,14 +291,40 @@ export default class Donate extends React.Component {
             onBackdropPress={() => this.setState({ isVisible: false })}
           >
             <View>
-              <Input
-                placeholder="Donation Amount"
-                keyboardType="numeric"
-                leftIcon={{
-                  type: "material-community",
-                  name: "bank"
+              <Text
+                style={{
+                  fontSize: 25,
+                  color: "#045484",
+                  alignSelf: "center",
+                  padding: 15
                 }}
-                onChangeText={amount => (this.state.amount = amount)}
+              >
+                Make a Donation
+              </Text>
+              <TextInputMask
+                customTextInput={cashText}
+                customTextInputProps={{
+                  style: {
+                    width: "80%",
+                    alignContent: "center",
+                    alignSelf: "center"
+                  },
+                  placeholder: "$0.00        "
+                }}
+                type={"money"}
+                options={{
+                  precision: 2,
+                  separator: ".",
+                  delimiter: ",",
+                  unit: "$",
+                  suffixUnit: ""
+                }}
+                value={this.state.amount}
+                onChangeText={money => {
+                  this.setState({
+                    amount: money
+                  });
+                }}
               />
 
               <Input

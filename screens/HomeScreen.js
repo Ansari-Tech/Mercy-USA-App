@@ -33,10 +33,8 @@ export default class HomeScreen extends React.Component {
         desc: "Donate to our Zakat Fund",
         id: "Assets"
       },
-      { name: "Qibla Compass", desc: "description here", id: "Qibla" },
+      //{ name: "Qibla Compass", desc: "description here", id: "Qibla" },
       { name: "Donate", desc: "Make a General Donation", id: "Donate" }
-      //{ name: "Currency Conversion", desc: "description here", id: "Donate" },
-      //{ name: "Settings", desc: "", id: "Settings"}
     ];
 
     return (
@@ -52,30 +50,10 @@ export default class HomeScreen extends React.Component {
             }}
           />
         </View>
-
-        {/*}				<TouchableOpacity
-					onPress={() => {
-						NavigationService.navigate("Locations");
-					}}>
-					<ImageBackground
-						source={require("../assets/whatwedo.jpg")}
-						style={{
-							width: width - 20,
-							height: height / 6,
-							alignSelf: "center",
-							resizeMode: "contain"
-						}}>
-						<Text style={styles.whatWeDo}>View our global locations</Text>
-					</ImageBackground>
-				</TouchableOpacity>
-					*/}
         <FlatGrid
           itemDimension={width - 10}
           items={items}
           style={styles.gridView}
-          // staticDimension={300}
-          // fixed
-          // spacing={20}
           renderItem={({ item, index }) => (
             <TouchableOpacity
               onPress={() => {

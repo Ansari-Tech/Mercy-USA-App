@@ -21,11 +21,6 @@ const settingsSection = [
     title: "User Information",
     icon: "av-timer",
     screen: "UserInfo"
-  },
-  {
-    title: "Notification Settings",
-    icon: "flight-takeoff",
-    screen: "Notifications"
   }
 ];
 export default class Settings extends React.Component {

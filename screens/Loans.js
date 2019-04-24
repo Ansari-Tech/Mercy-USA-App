@@ -8,7 +8,7 @@ import {
   Alert
 } from "react-native";
 import NavigationService from "../NavigationService";
-import { Input, Overlay } from "react-native-elements";
+import { Divider, Overlay } from "react-native-elements";
 import { MKTextField } from "react-native-material-kit";
 import { TextInputMask } from "react-native-masked-text";
 
@@ -33,17 +33,51 @@ export default class Loans extends React.Component {
           isVisible={this.state.isVisible}
           onBackdropPress={() => this.setState({ isVisible: false })}
         >
-          <View>
-            <Button
-              title="Get Started"
-              onPress={() => {
-                this.setState({ isVisible: false });
-              }}
-            />
+          <View style={styles.modalView}>
+            <Text style={styles.modalTitle}>Lending & Loans</Text>
+            <Divider style={{ backgroundColor: "blue" }} />
+            <ScrollView style={{ flex: 1, alignContent: "center" }}>
+              <View style={styles.modalSection}>
+                <Text style={styles.modalSubtitle}>
+                  Money Loaned to Others.
+                </Text>
+                <Text style={styles.modalBody}>
+                  Any money you have loaned to friends, family, or acquaintances
+                  that you expect to be payed back in reasonable amount of time.
+                  An example could be money lent to a family member to buy a
+                  car, or money borrowed by a friend for bills.
+                </Text>
+              </View>
+              <View style={styles.modalSection}>
+                <Text style={styles.modalSubtitle}>Shares & Stocks</Text>
+                <Text style={styles.modalBody}>
+                  This could include investments in public businesses like Apple
+                  or Google, stock owned in the company you work for, or shares
+                  in any other business.
+                </Text>
+              </View>
+              <View style={styles.modalSection}>
+                <Text style={styles.modalSubtitle}>Borrowed Money</Text>
+                <Text style={styles.modalBody}>
+                  Any money that you have borrowed from family or friends should
+                  be included under this category.
+                </Text>
+              </View>
+            </ScrollView>
+            <Divider style={{ backgroundColor: "blue" }} />
+            <View>
+              <Button
+                style={styles.modalButton}
+                title="Get Started"
+                onPress={() => {
+                  this.setState({ isVisible: false });
+                }}
+              />
+            </View>
           </View>
         </Overlay>
         <Text style={styles.inputText}>
-          Non-delinquent loans (money you loaned to otheres and expect to be
+          Non-delinquent loans (money you loaned to others and expect to be
           repaid).
         </Text>
         <TextInputMask
@@ -67,7 +101,7 @@ export default class Loans extends React.Component {
             });
           }}
         />
-        <Text style={styles.inputText}>Shares of Stock</Text>
+        <Text style={styles.inputText}>Shares & Stocks</Text>
         <TextInputMask
           customTextInput={cashText}
           customTextInputProps={{
@@ -142,14 +176,12 @@ export default class Loans extends React.Component {
     );
   }
 }
+
 const styles = StyleSheet.create({
   mainView: {
     flex: 2,
     alignItems: "center",
     width: width
-  },
-  btnView: {
-    alignSelf: "center"
   },
   btn: {
     alignSelf: "center",
@@ -168,5 +200,26 @@ const styles = StyleSheet.create({
   inputText: {
     textAlign: "center",
     paddingTop: 20
+  },
+  modalView: {
+    flex: 1
+  },
+  modalTitle: {
+    fontSize: 25,
+    color: "#045484",
+    alignSelf: "center"
+  },
+  modalSection: {
+    padding: 25
+  },
+  modalSubtitle: {
+    fontSize: 25
+  },
+  modalBody: {},
+  modalButton: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0
   }
 });

@@ -41,13 +41,11 @@ export default class AssetsScreen extends React.Component {
             <ScrollView style={{ flex: 1, alignContent: "center" }}>
               <View style={styles.modalSection}>
                 <Text style={styles.modalSubtitle}>
-                  Money Loaned to Others.
+                  Cash in Hand & in Bank.
                 </Text>
                 <Text style={styles.modalBody}>
-                  Any money you have loaned to friends, family, or acquaintances
-                  that you expect to be payed back in reasonable amount of time.
-                  An example could be money lent to a family member to buy a
-                  car, or money borrowed by a friend for bills.
+                  Money stored in your checking account or in cash, as well as
+                  any savings readily available to you.
                 </Text>
               </View>
               <View style={styles.modalSection}>
@@ -81,18 +79,9 @@ export default class AssetsScreen extends React.Component {
           </View>
         </Overlay>
         <Text style={styles.inputText}>
-          Non-delinquent loans (money you loaned to otheres and expect to be
-          repaid).
+          Enter the value of cash in your bank account(s) and in your
+          posesssion.
         </Text>
-        <TextInputMask
-          type={"money"}
-          value={this.state.simple}
-          onChangeText={text => {
-            this.setState({
-              simple: text
-            });
-          }}
-        />
         <TextInputMask
           customTextInput={cashText}
           customTextInputProps={{
