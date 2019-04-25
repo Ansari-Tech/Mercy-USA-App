@@ -94,24 +94,32 @@ export default class ZakatResults extends React.Component {
     }
     let nisab = this.state.goldValue * 3;
     let total =
-      parseFloat(this.params.asset.cash.replace("$", "")) +
-      parseFloat(this.params.asset.gold.replace("$", "")) +
-      parseFloat(this.params.asset.jewlery.replace("$", "")) +
-      parseFloat(this.params.loan.ndLoans.replace("$", "")) +
-      parseFloat(this.params.loan.loans.replace("$", "")) +
-      parseFloat(this.params.loan.stock.replace("$", "")) +
-      parseFloat(this.params.business.inventory.replace("$", "")) +
-      parseFloat(this.params.business.realEstate.replace("$", "")) +
-      parseFloat(this.params.business.profit.replace("$", ""));
+      parseFloat(this.params.asset.cash.replace("$", "").replace(",", "")) +
+      parseFloat(this.params.asset.gold.replace("$", "").replace(",", "")) +
+      parseFloat(this.params.asset.jewlery.replace("$", "").replace(",", "")) +
+      parseFloat(this.params.loan.ndLoans.replace("$", "").replace(",", "")) +
+      parseFloat(this.params.loan.loans.replace("$", "").replace(",", "")) +
+      parseFloat(this.params.loan.stock.replace("$", "").replace(",", "")) +
+      parseFloat(
+        this.params.business.inventory.replace("$", "").replace(",", "")
+      ) +
+      parseFloat(
+        this.params.business.realEstate.replace("$", "").replace(",", "")
+      ) +
+      parseFloat(this.params.business.profit.replace("$", "").replace(",", ""));
 
     let owed = total < nisab ? 0 : total * 0.025;
     return (
       <View>
-        <Text style={StyleSheet.title}>$0.00</Text>
+        <Text style={StyleSheet.title}>
+          {total} less than or greater than
+          {nisab} = > {owed}
+        </Text>
       </View>
     );
   }
 }
+//450000.00 => 450000
 
 const styles = StyleSheet.create({
   title: {
