@@ -4,8 +4,7 @@ import {
   Button,
   Text,
   StyleSheet,
-  ScrollView,
-  Alert,
+  Animated,
   ActivityIndicator
 } from "react-native";
 import NavigationService from "../NavigationService";
@@ -20,11 +19,20 @@ export default class ZakatResults extends React.Component {
   };
   constructor(props) {
     super(props);
-    this.state = { isVisible: true, isLoading: true, isNoInternet: false };
+    this.state = {
+      isVisible: true,
+      isLoading: true,
+      isNoInternet: false,
+      fadeAnim: new Animated.Value(0)
+    };
     this.params = this.props.navigation.state.params;
   }
 
   componentDidMount() {
+    Animated.timing(this.state.fadeAnim, {
+      toValue: 1,
+      duration: 1000000
+    }).start();
     const URL =
       "https://www.quandl.com/api/v3/datasets/WGC/GOLD_DAILY_USD.json?limit=1&api_key=gPxV2UWAz3weZ2UTAzUr";
     return fetch(URL)
@@ -43,6 +51,7 @@ export default class ZakatResults extends React.Component {
       });
   }
   render() {
+    let { fadeAnim } = this.state.fadeAnim;
     if (this.state.isLoading) {
       return (
         <View
@@ -108,21 +117,34 @@ export default class ZakatResults extends React.Component {
       ) +
       parseFloat(this.params.business.profit.replace("$", "").replace(",", ""));
 
-    let owed = total < nisab ? 0 : total * 0.025;
+    let owed = Math.ceil((total < nisab ? 0 : total * 0.025) * 100) / 100;
     return (
-      <View>
-        <Text style={StyleSheet.title}>
-          {total} less than or greater than
-          {nisab} = > {owed}
-        </Text>
+      <View style={styles.mainResult}>
+        <Text style={styles.subTitle}>Your Calculated Zakat is...</Text>
+        <Animated.View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            opacity: fadeAnim
+          }}
+        />
+        <Text style={styles.title}>${owed}!</Text>
       </View>
     );
   }
 }
-//450000.00 => 450000
-
 const styles = StyleSheet.create({
   title: {
-    fontSize: 35
+    fontSize: 35,
+    color: "green"
+  },
+  subTitle: {
+    fontSize: 20,
+    paddingTop: 10
+  },
+  mainResult: {
+    paddingTop: 15,
+    justifyContent: "center",
+    alignItems: "center"
   }
 });

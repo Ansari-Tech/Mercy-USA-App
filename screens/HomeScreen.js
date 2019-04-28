@@ -27,6 +27,7 @@ export default class HomeScreen extends React.Component {
     )
   };
   render() {
+    
     const items = [
       {
         name: "Zakat Calculator",

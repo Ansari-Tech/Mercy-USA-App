@@ -1,9 +1,9 @@
 {
   "packagerPort": 19001,
-  "packagerPid": 30447,
+  "packagerPid": 1014,
   "expoServerNgrokUrl": "https://b3-kua.ansari-tech.mercyusaapp.exp.direct",
   "packagerNgrokUrl": "https://packager.b3-kua.ansari-tech.mercyusaapp.exp.direct",
-  "ngrokPid": 30464,
+  "ngrokPid": 1028,
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "webpackServerPort": null

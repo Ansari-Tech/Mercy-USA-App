@@ -4,14 +4,14 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
+  ActivityIndicator,
   Animated,
   Image,
   Dimensions,
-  TouchableOpacity
+  Linking
 } from "react-native";
 
-import { MapView, Marker } from "expo";
+import { MapView, Asset } from "expo";
 
 const { width, height } = Dimensions.get("window");
 
@@ -26,80 +26,131 @@ export default class Projects extends React.Component {
     markers: [
       {
         coordinate: {
-          latitude: 42.360406,
-          longitude: -83.480501
+          latitude: 34.86,
+          longitude: 38.86
         },
-        title: "Mercy USA Headquarters",
-        description: "stuff here"
+        title: "Syria",
+        description:
+          "Since October 2012, Mercy-USA for Aid and Development’s Syrian relief workers have been providing food aid inside Syria. Currently, we are assisting thousands of displaced and vulnerable families with monthly food baskets, medical care, seasonal food and meat distribution plus heat and shelter in northern Syria.",
+        link: "https://mercyusa.org/project/syria/",
+        image: require("../assets/syria.png")
       },
       {
         coordinate: {
-          latitude: 41.328679,
-          longitude: 19.814329
+          latitude: 33.906489,
+          longitude: 35.861035
         },
-        title: "Mercy USA Albania",
-        description: "stuff here"
+        title: "Lebanon",
+        description:
+          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia",
+        link: "https://mercyusa.org/project/lebanon/",
+        image: require("../assets/lebanon.png")
       },
       {
         coordinate: {
-          latitude: 34.436622,
-          longitude: 35.83
+          latitude: 0.308254,
+          longitude: 37.697133
         },
-        title: "Mercy USA Lebanon",
-        description: "more stuff here"
+        title: "Kenya",
+        description:
+          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia",
+        link: "https://mercyusa.org/project/kenya/",
+        image: require("../assets/kenya.png")
       },
       {
         coordinate: {
-          latitude: 44.539998,
-          longitude: 18.66
+          latitude: -3.731712,
+          longitude: 121.951341
         },
-        title: "Mercy USA Bosnia",
-        description: "stuff"
+        title: "Indonesia",
+        description:
+          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia",
+        link: "https://mercyusa.org/project/indonesia/",
+        image: require("../assets/indonesia.png")
       },
       {
         coordinate: {
-          latitude: 3.56,
-          longitude: 98.64
+          latitude: 2.249495,
+          longitude: 45.237094
         },
-        title: "Mercy USA Indonesia",
-        description: "stuff"
+        title: "Somalia",
+        description:
+          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia",
+        link: "https://mercyusa.org/project/somalia/",
+        image: require("../assets/somalia.png")
       },
       {
         coordinate: {
-          latitude: 2.046,
-          longitude: 45.3
+          latitude: 22.029303,
+          longitude: 78.927645
         },
-        title: "Mercy USA Somalia",
-        description: "stuff"
+        title: "India",
+        description:
+          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia",
+        link: "https://mercyusa.org/project/india/",
+        image: require("../assets/india.png")
       },
       {
         coordinate: {
-          latitude: -1.298,
-          longitude: 36.779
+          latitude: 38.934259,
+          longitude: -101.01
         },
-        title: "Mercy USA Kenya",
-        description: "stuff"
+        title: "America",
+        description:
+          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia",
+        link: "https://mercyusa.org/project/united-states/",
+        image: require("../assets/america.png")
       },
       {
         coordinate: {
-          latitude: 36.2207,
-          longitude: 36.1498
+          latitude: 41.292131,
+          longitude: 19.830913
         },
-        title: "Mercy USA Turkey",
-        description: "stuff"
+        title: "Albania",
+        description:
+          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia",
+        link: "https://mercyusa.org/project/Albania/",
+        image: require("../assets/albania.png")
+      },
+      {
+        coordinate: {
+          latitude: 44.124389,
+          longitude: 17.859
+        },
+        title: "Bosnia",
+        description:
+          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia",
+        link: "https://mercyusa.org/project/bosnia/",
+        image: require("../assets/bosnia.png")
       }
     ],
     region: {
-      latitude: 37.360406,
-      longitude: -83.480501,
+      latitude: 34.86,
+      longitude: 38.86,
       latitudeDelta: 20.0,
-      longitudeDelta: 20.0,
-    }
+      longitudeDelta: 20.0
+    },
+    isLoading: true
   };
-
-  componentWillMount() {
+  async _cacheResourcesAsync() {
+    const images = [
+      require("../assets/syria.png"),
+      require("../assets/lebanon.png"),
+      require("../assets/kenya.png"),
+      require("../assets/indonesia.png"),
+      require("../assets/somalia.png"),
+      require("../assets/india.png"),
+      require("../assets/america.png"),
+      require("../assets/albania.png"),
+      require("../assets/bosnia.png")
+    ];
+    await Asset.loadAsync(images);
+  }
+  async componentWillMount() {
     this.index = 0;
     this.animation = new Animated.Value(0);
+    await Promise.all([this._cacheResourcesAsync()]);
+    this.setState({ isLoading: false });
   }
   componentDidMount() {
     this.animation.addListener(({ value }) => {
@@ -132,61 +183,85 @@ export default class Projects extends React.Component {
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <MapView
-          ref={map => (this.map = map)}
-          initialRegion={this.state.region}
-          style={styles.container}>
-          {this.state.markers.map((marker, index) => {
-            return (
-              <MapView.Marker key={index} coordinate={marker.coordinate} />
-            );
-          })}
-        </MapView>
-        <Animated.ScrollView
-          pagingEnabled={true}
-          horizontal={true}
-          decelerationRate={0}
-          snapToInterval={width - 60}
-          snapToAlignment={"center"}
-          scrollEventThrottle={1}
-          onScroll={Animated.event(
-            [
-              {
-                nativeEvent: {
-                  contentOffset: {
-                    x: this.animation
+    if (this.state.isLoading == false) {
+      return (
+        <View style={styles.container}>
+          <MapView
+            ref={map => (this.map = map)}
+            initialRegion={this.state.region}
+            style={styles.container}
+          >
+            {this.state.markers.map((marker, index) => {
+              return (
+                <MapView.Marker key={index} coordinate={marker.coordinate} />
+              );
+            })}
+          </MapView>
+          <Animated.ScrollView
+            pagingEnabled={true}
+            horizontal={true}
+            decelerationRate={0}
+            snapToInterval={width - 60}
+            snapToAlignment={"center"}
+            scrollEventThrottle={1}
+            onScroll={Animated.event(
+              [
+                {
+                  nativeEvent: {
+                    contentOffset: {
+                      x: this.animation
+                    }
                   }
                 }
+              ],
+              {
+                useNativeDriver: true
               }
-            ],
-            {
-              useNativeDriver: true
-            }
-          )}
-          style={styles.scrollView}
-          contentContainerStyle={styles.endPadding}>
-          {this.state.markers.map((marker, index) => (
-            <View style={styles.card} key={index}>
-              <Image
-                source={marker.image}
-                style={styles.cardImage}
-                resizeMode="cover"
-              />
-              <View style={styles.textContent}>
-                <Text numberOfLines={1} style={styles.cardtitle}>
-                  {marker.title}
-                </Text>
-                <Text numberOfLines={1} style={styles.cardDescription}>
-                  {marker.description}
-                </Text>
+            )}
+            style={styles.scrollView}
+            contentContainerStyle={styles.endPadding}
+          >
+            {this.state.markers.map((marker, index) => (
+              <View style={styles.card} key={index}>
+                <View style={styles.textContent}>
+                  <Image
+                    source={marker.image}
+                    style={{
+                      width: width - 110,
+                      height: 120
+                    }}
+                  />
+                  <Text style={styles.cardDescription}>
+                    {marker.description}
+                  </Text>
+                  <Text
+                    style={styles.readMmore}
+                    onPress={() => {
+                      Linking.openURL(marker.link);
+                    }}
+                  >
+                    Read more...
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    position: "absolute",
+                    top: 15,
+                    left: 15
+                  }}
+                >
+                  <Text numberOfLines={1} style={styles.cardTitle}>
+                    {marker.title}
+                  </Text>
+                </View>
               </View>
-            </View>
-          ))}
-        </Animated.ScrollView>
-      </View>
-    );
+            ))}
+          </Animated.ScrollView>
+        </View>
+      );
+    } else {
+      return <ActivityIndicator />;
+    }
   }
 }
 
@@ -217,21 +292,32 @@ const styles = StyleSheet.create({
     },
     width: width - 80,
     margin: 10,
-    height: 200,
+    height: 270,
     borderRadius: 10
   },
   textContent: {
-    flex: 1,
-    alignContent: "center"
+    alignContent: "center",
+    paddingTop: 15,
+    paddingLeft: 15
   },
-  cardtitle: {
-    fontSize: 12,
+  cardTitle: {
+    fontSize: 25,
     marginTop: 5,
-    fontWeight: "bold"
+    paddingLeft: 10,
+    color: "#ffffff",
+    textShadowColor: "rgba(0, 0, 0, 0.75)",
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10
   },
   cardDescription: {
     fontSize: 12,
+    paddingLeft: 10,
     color: "#444"
+  },
+  readMmore: {
+    fontSize: 12,
+    color: "blue",
+    paddingLeft: 10
   }
 });
 

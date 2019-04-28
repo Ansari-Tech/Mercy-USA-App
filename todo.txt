@@ -1,0 +1,12 @@
+Fill in office information
+Fill in project information
+Format map info tiles 
+add donate button to zakatResults
+add breakdown to zakatResults
+add link to website somewhere (main page?)
+add privacy Policy
+add about page 
+format donation page (user info button)
+format buttons for android 
+align donate modal to not be blocked by keyboard
+user info zip code field adjust to not be blocked by keyboard

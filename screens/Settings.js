@@ -7,19 +7,19 @@ const { width } = Dimensions.get("window");
 const aboutSection = [
   {
     title: "About",
-    icon: "av-timer",
+    icon: "info-outline",
     screen: "About"
   },
   {
     title: "Privacy Policy",
-    icon: "flight-takeoff",
+    icon: "verified-user",
     screen: "privacy"
   }
 ];
 const settingsSection = [
   {
     title: "User Information",
-    icon: "av-timer",
+    icon: "perm-device-information",
     screen: "UserInfo"
   }
 ];
@@ -29,7 +29,9 @@ export default class Settings extends React.Component {
   };
   render() {
     return (
-      <ScrollView style={{ flex: 1, backgroundColor: "#EFF0F3" }}>
+      <ScrollView
+        style={{ flex: 1, backgroundColor: "#EFF0F3", paddingTop: 35 }}
+      >
         <View style={{ padding: 10 }}>
           {settingsSection.map((item, i) => (
             <ListItem
