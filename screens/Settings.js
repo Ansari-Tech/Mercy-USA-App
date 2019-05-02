@@ -13,7 +13,7 @@ const aboutSection = [
   {
     title: "Privacy Policy",
     icon: "verified-user",
-    screen: "privacy"
+    screen: "Privacy"
   }
 ];
 const settingsSection = [

@@ -1,6 +1,7 @@
 import React from "react";
 import { StatusBar, Alert } from "react-native";
 import { Asset, AppLoading } from "expo";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import {
   createStackNavigator,
   createAppContainer,
@@ -19,7 +20,7 @@ import ZakatResults from "./screens/ZakatResults";
 import Settings from "./screens/Settings";
 import UserInfo from "./screens/UserInfo";
 import Projects from "./screens/Projects";
-
+import Privacy from "./screens/Privacy";
 const TabNavigator = createBottomTabNavigator({
   Home: {
     screen: HomeScreen
@@ -43,6 +44,7 @@ const AppNavigator = createStackNavigator(
     Settings: Settings,
     UserInfo: UserInfo,
     Projects: Projects,
+    Privacy: Privacy,
     TabNavigator: {
       screen: TabNavigator,
       navigationOptions: {
