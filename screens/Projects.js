@@ -31,7 +31,7 @@ export default class Projects extends React.Component {
         },
         title: "Syria",
         description:
-          "Since October 2012, Mercy-USA for Aid and Development’s Syrian relief workers have been providing food aid inside Syria. Currently, we are assisting thousands of displaced and vulnerable families with monthly food baskets, medical care, seasonal food and meat distribution plus heat and shelter in northern Syria.",
+          "Mercy-USA has been serving humanitarian needs to the people of Syria since 2012 with food aid, healthcare, shelter and winterization projects.  We currently provide over 86,000 people with monthly food baskets. Your donation of $110 will feed an entire family for a month. We provide iftar, fitra and udhia/qurbani each year with your Zakat.",
         link: "https://mercyusa.org/project/syria/",
         image: require("../assets/syria.png")
       },
@@ -42,7 +42,7 @@ export default class Projects extends React.Component {
         },
         title: "Lebanon",
         description:
-          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia",
+          "Mercy-USA has been bringing vital healthcare to Somalia for more than 20 years, including mother and child health and nutrition clinics across the country. We have been providing safe access to clean water with more than 600 wells to date for sadaqah jariyah. We provide iftar, fitra and udhia/qurbani each year with your Zakat. ",
         link: "https://mercyusa.org/project/lebanon/",
         image: require("../assets/lebanon.png")
       },
@@ -53,7 +53,7 @@ export default class Projects extends React.Component {
         },
         title: "Kenya",
         description:
-          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia",
+          "Mercy-USA provides nutritional support for mothers and children, as well as hygiene and sanitation training and promotion. We provide iftar, fitra and udhia/qurbani each year with your Zakat.",
         link: "https://mercyusa.org/project/kenya/",
         image: require("../assets/kenya.png")
       },
@@ -64,7 +64,7 @@ export default class Projects extends React.Component {
         },
         title: "Indonesia",
         description:
-          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia",
+          "Mercy-USA provides emergency disaster relief as well as agriculture support for small farmers. We provide iftar, fitra and udhia/qurbani each year with your Zakat.",
         link: "https://mercyusa.org/project/indonesia/",
         image: require("../assets/indonesia.png")
       },
@@ -86,7 +86,7 @@ export default class Projects extends React.Component {
         },
         title: "India",
         description:
-          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia",
+          "Mercy-USA provides iftar, fitra and udhia/qurbani each year with your Zakat as well as emergency humanitarian relief. ",
         link: "https://mercyusa.org/project/india/",
         image: require("../assets/india.png")
       },
@@ -95,9 +95,9 @@ export default class Projects extends React.Component {
           latitude: 38.934259,
           longitude: -101.01
         },
-        title: "America",
+        title: "United States",
         description:
-          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia",
+          "Mercy-USA provides support for Refugees as well as local support for Detroit area homeless shelters. We have a school backpack program for disadvantaged students in Detroit. We distribute udhia/qurbani with your Zakat.",
         link: "https://mercyusa.org/project/united-states/",
         image: require("../assets/america.png")
       },
@@ -108,7 +108,7 @@ export default class Projects extends React.Component {
         },
         title: "Albania",
         description:
-          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia",
+          "Mercy-USA provides supplemental education programs for youth with English and computer skills training. We stock public school libraries each year with new titles. We provide farmers with technical assistance. We provide iftar, fitra and udhia/qurbani each year with your Zakat.",
         link: "https://mercyusa.org/project/Albania/",
         image: require("../assets/albania.png")
       },
@@ -119,7 +119,7 @@ export default class Projects extends React.Component {
         },
         title: "Bosnia",
         description:
-          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia",
+          "Mercy-USA provides supplemental education programs for youth and workforce skills training for young adults. Our Agricultural Education Center provides technical assistance to farmers, students and helps local communities with seedlings for kitchen gardens. We provide iftar, fitra and udhia/qurbani each year with your Zakat.",
         link: "https://mercyusa.org/project/bosnia/",
         image: require("../assets/bosnia.png")
       }
@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
   textContent: {
     alignContent: "center",
     paddingTop: 15,
-    paddingLeft: 15
+    paddingLeft: 10
   },
   cardTitle: {
     fontSize: 25,
@@ -311,13 +311,14 @@ const styles = StyleSheet.create({
   },
   cardDescription: {
     fontSize: 12,
-    paddingLeft: 10,
+    paddingLeft: 0,
+    paddingRight: 25,
     color: "#444"
   },
   readMmore: {
     fontSize: 12,
     color: "blue",
-    paddingLeft: 10
+    paddingLeft: 0
   }
 });
 

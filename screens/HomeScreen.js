@@ -30,11 +30,10 @@ export default class HomeScreen extends React.Component {
     const items = [
       {
         name: "Zakat Calculator",
-        desc: "Donate to our Zakat Fund",
         id: "Assets"
       },
       //{ name: "Qibla Compass", desc: "description here", id: "Qibla" },
-      { name: "Donate", desc: "Make a General Donation", id: "Donate" }
+      { name: "Donate", id: "Donate" }
     ];
 
     return (
@@ -62,10 +61,10 @@ export default class HomeScreen extends React.Component {
             >
               <ImageBackground
                 source={require("../assets/squareglobe.png")}
-                style={[styles.itemContainer]}
+                style={styles.itemContainer}
+                imageStyle={{ borderRadius: 20 }}
               >
                 <Text style={styles.itemName}>{item.name}</Text>
-                <Text style={styles.itemCode}>{item.desc}</Text>
               </ImageBackground>
             </TouchableOpacity>
           )}
@@ -92,15 +91,24 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   itemContainer: {
-    justifyContent: "flex-end",
-    borderRadius: 5,
+    justifyContent: "center",
+    borderRadius: 25,
     padding: 10,
-    height: 150
+    height: 150,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 6
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+
+    elevation: 12
   },
   itemName: {
-    fontSize: 16,
-    color: "#fff",
-    fontWeight: "600"
+    fontSize: 35,
+    alignSelf: "center",
+    color: "#fff"
   },
   whatWeDo: {
     paddingTop: 30,

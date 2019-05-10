@@ -62,11 +62,17 @@ export default class Donate extends React.Component {
       amount: "$0.00",
       isVisible: false
     };
+    this.params = this.props.navigation.state.params;
   }
   static navigationOptions = {
     title: "Donate"
   };
   componentDidMount = () => {
+    if (this.params != null) {
+      this.state.isVisible = this.params.isVisible;
+      this.state.amount = this.params.amount;
+      this.state.designation = "Zakat Fund";
+    }
     AsyncStorage.getItem("user").then(value => {
       if (value != null) {
         this.setState({ user: JSON.parse(value) });
@@ -275,12 +281,6 @@ export default class Donate extends React.Component {
       return (
         <View style={styles.container}>
           <Button
-            title="View & edit your personal information"
-            onPress={() => {
-              NavigationService.navigate("UserInfo");
-            }}
-          />
-          <Button
             title="Make a Donation"
             onPress={() => {
               this.setState({ isVisible: true });
@@ -414,6 +414,12 @@ export default class Donate extends React.Component {
             {buttonThree}
             {clearButton}
           </Card>
+          <Button
+            title="View & edit your personal information"
+            onPress={() => {
+              NavigationService.navigate("UserInfo");
+            }}
+          />
         </View>
       );
     }

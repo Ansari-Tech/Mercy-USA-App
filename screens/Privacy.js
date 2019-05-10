@@ -20,7 +20,7 @@ const Textfield = MKTextField.textfield()
 export default class Privacy extends React.Component {
   render() {
     return (
-      <View style={{ padding: 10, flex: 1 }}>
+      <View style={{ padding: 15, flex: 1 }}>
         <Text>
           Mercy-USA does not sell, lend or share email addresses, postal
           addresses, telephone numbers or any other personal information

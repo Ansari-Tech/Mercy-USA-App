@@ -21,14 +21,41 @@ import Settings from "./screens/Settings";
 import UserInfo from "./screens/UserInfo";
 import Projects from "./screens/Projects";
 import Privacy from "./screens/Privacy";
-const TabNavigator = createBottomTabNavigator({
-  Home: {
-    screen: HomeScreen
+const TabNavigator = createBottomTabNavigator(
+  {
+    Home: {
+      screen: HomeScreen
+    },
+    Locations: Locations,
+    Projects: Projects,
+    Settings: Settings
   },
-  Locations: Locations,
-  Projects: Projects,
-  Settings: Settings
-});
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+        const { routeName } = navigation.state;
+        let IconComponent = Ionicons;
+        let iconName;
+        if (routeName === "Home") {
+          iconName = `ios-information-circle${focused ? "" : "-outline"}`;
+        } else if (routeName === "Settings") {
+          iconName = `ios-options`;
+        } else if (routeName == "Projects") {
+          iconName = "ios-compass";
+        } else if (routeName == "Locations") {
+          iconName = "ios-flag";
+        }
+
+        // You can return any component that you like here!
+        return <IconComponent name={iconName} size={25} color={tintColor} />;
+      }
+    }),
+    tabBarOptions: {
+      activeTintColor: "#045484",
+      inactiveTintColor: "gray"
+    }
+  }
+);
 
 const AppNavigator = createStackNavigator(
   {

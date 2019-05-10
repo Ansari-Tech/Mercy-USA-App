@@ -118,19 +118,45 @@ export default class ZakatResults extends React.Component {
       parseFloat(this.params.business.profit.replace("$", "").replace(",", ""));
 
     let owed = Math.ceil((total < nisab ? 0 : total * 0.025) * 100) / 100;
-    return (
-      <View style={styles.mainResult}>
-        <Text style={styles.subTitle}>Your Calculated Zakat is...</Text>
-        <Animated.View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            opacity: fadeAnim
-          }}
-        />
-        <Text style={styles.title}>${owed}!</Text>
-      </View>
-    );
+
+    if (owed > 0) {
+      return (
+        <View style={styles.mainResult}>
+          <Text style={styles.subTitle}>Your calculated zakat is...</Text>
+          <Animated.View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              opacity: fadeAnim
+            }}
+          />
+          <Text style={styles.title}>${owed}!</Text>
+          <Button
+            title="Donate now"
+            onPress={() => {
+              NavigationService.navigate("Donate", {
+                isVisible: true,
+                amount: owed.toString()
+              });
+            }}
+          />
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.mainResult}>
+          <Text style={styles.subTitle}>Your calculated zakat is...</Text>
+          <Animated.View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              opacity: fadeAnim
+            }}
+          />
+          <Text style={styles.title}>${owed}!</Text>
+        </View>
+      );
+    }
   }
 }
 const styles = StyleSheet.create({
