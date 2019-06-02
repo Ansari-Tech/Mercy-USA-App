@@ -28,12 +28,15 @@ export default class HomeScreen extends React.Component {
   };
   render() {
     const items = [
+      { name: "Donate", id: "Donate" },
       {
         name: "Zakat Calculator",
         id: "Assets"
       },
-      //{ name: "Qibla Compass", desc: "description here", id: "Qibla" },
-      { name: "Donate", id: "Donate" }
+      {
+        name: "Office Locations",
+        id: "Locations"
+      }
     ];
 
     return (
@@ -94,7 +97,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 25,
     padding: 10,
-    height: 150,
+    height: 100,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

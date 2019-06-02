@@ -136,7 +136,8 @@ export default class ZakatResults extends React.Component {
             onPress={() => {
               NavigationService.navigate("Donate", {
                 isVisible: true,
-                amount: owed.toString()
+                amount: owed.toString(),
+                designation: "Zakat Fund"
               });
             }}
           />

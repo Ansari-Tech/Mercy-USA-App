@@ -11,6 +11,7 @@ import {
   ActivityIndicator
 } from "react-native";
 import NavigationService from "../NavigationService";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import { Input } from "react-native-elements";
 const Dimensions = require("Dimensions");
 const { width } = Dimensions.get("window");
@@ -31,8 +32,7 @@ export default class UserInfo extends React.Component {
         street: "",
         city: "",
         state: "",
-        zip: "",
-        complete: ""
+        zip: ""
       },
       isLoading: true
     };
@@ -46,14 +46,18 @@ export default class UserInfo extends React.Component {
       }
     });
   setUser() {
-    AsyncStorage.setItem("user", JSON.stringify(this.state.user));
+    AsyncStorage.setItem(
+      "user",
+      JSON.stringify(this.state.user),
+      Alert.alert("User info saved.")
+    );
   }
   render() {
     if (this.state.isLoading) {
       return <ActivityIndicator />;
     }
     return (
-      <KeyboardAvoidingView
+      <KeyboardAwareScrollView
         behavior="position"
         enabled
         style={{ flex: 1, backgroundColor: "#EFF0F3" }}
@@ -145,26 +149,8 @@ export default class UserInfo extends React.Component {
         <Button
           title="Save"
           onPress={() => {
-            if (
-              this.state.user.fname == "" ||
-              this.state.user.lname == "" ||
-              this.state.user.email == "" ||
-              this.state.user.phone == "" ||
-              this.state.user.street == "" ||
-              this.state.user.city == "" ||
-              this.state.user.state == "" ||
-              this.state.user.zip == ""
-            ) {
-              const user = Object.assign({}, this.state.user, {
-                complete: "no"
-              });
-              this.setState({ user }, this.setUser);
-            } else {
-              const user = Object.assign({}, this.state.user, {
-                complete: "yes"
-              });
-              this.setState({ user }, this.setUser);
-            }
+            const user = Object.assign({}, this.state.user, {});
+            this.setState({ user }, this.setUser);
           }}
         />
         <Button
@@ -179,13 +165,12 @@ export default class UserInfo extends React.Component {
               street: "",
               city: "",
               state: "",
-              zip: "",
-              complete: "no"
+              zip: ""
             });
             this.setState({ user }, this.setUser);
           }}
         />
-      </KeyboardAvoidingView>
+      </KeyboardAwareScrollView>
     );
   }
 }

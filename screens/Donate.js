@@ -71,13 +71,11 @@ export default class Donate extends React.Component {
     if (this.params != null) {
       this.state.isVisible = this.params.isVisible;
       this.state.amount = this.params.amount;
-      this.state.designation = "Zakat Fund";
+      this.state.designation = this.params.designation;
     }
     AsyncStorage.getItem("user").then(value => {
       if (value != null) {
         this.setState({ user: JSON.parse(value) });
-      } else {
-        Alert.alert("User info not saved");
       }
     }),
       AsyncStorage.getItem("donations").then(value => {
@@ -207,8 +205,9 @@ export default class Donate extends React.Component {
             <ImageBackground
               source={require("../assets/squareglobe.png")}
               style={[styles.itemContainer]}
+              imageStyle={{ borderRadius: 20 }}
             >
-              <Text style={styles.itemName}>
+              <Text allowFontScaling={false} style={styles.itemName}>
                 {"$" + this.state.donations[0].amount}
               </Text>
               <Text style={styles.itemDesc}>
@@ -237,8 +236,9 @@ export default class Donate extends React.Component {
             <ImageBackground
               source={require("../assets/squareglobe.png")}
               style={[styles.itemContainer]}
+              imageStyle={{ borderRadius: 20 }}
             >
-              <Text style={styles.itemName}>
+              <Text allowFontScaling={false} style={styles.itemName}>
                 {"$" + this.state.donations[1].amount}
               </Text>
               <Text style={styles.itemDesc}>
@@ -267,8 +267,9 @@ export default class Donate extends React.Component {
             <ImageBackground
               source={require("../assets/squareglobe.png")}
               style={[styles.itemContainer]}
+              imageStyle={{ borderRadius: 20 }}
             >
-              <Text style={styles.itemName}>
+              <Text allowFontScaling={false} style={styles.itemName}>
                 {"$" + this.state.donations[2].amount}
               </Text>
               <Text numberOfLines={1} style={styles.itemDesc}>
@@ -280,12 +281,24 @@ export default class Donate extends React.Component {
       }
       return (
         <View style={styles.container}>
-          <Button
-            title="Make a Donation"
-            onPress={() => {
-              this.setState({ isVisible: true });
-            }}
-          />
+          <View style={{ alignSelf: "center", justifyContent: "center" }}>
+            <TouchableOpacity
+              style={styles.donateView}
+              onPress={() => {
+                this.setState({ isVisible: true });
+              }}
+            >
+              <ImageBackground
+                source={require("../assets/squareglobe.png")}
+                style={[styles.donateContainer]}
+                imageStyle={{ borderRadius: 20 }}
+              >
+                <Text style={styles.donate} allowFontScaling={false}>
+                  Make a Donation
+                </Text>
+              </ImageBackground>
+            </TouchableOpacity>
+          </View>
           <Overlay
             isVisible={this.state.isVisible}
             onBackdropPress={() => this.setState({ isVisible: false })}
@@ -337,6 +350,7 @@ export default class Donate extends React.Component {
                   this.setState({ designation: itemValue })
                 }
               >
+                <Picker.Item label="Greatest Need" value="Greatest Need" />
                 <Picker.Item
                   label="Somalia Safe Water Project"
                   value="Somalia Safe Water Project"
@@ -363,12 +377,8 @@ export default class Donate extends React.Component {
                 />
                 <Picker.Item label="Ramadan Iftar" value="Ramadan Iftar" />
                 <Picker.Item
-                  label="Zakat ul-Fitr/Fitra'"
-                  value="Zakat ul-Fitr/Fitra'"
-                />
-                <Picker.Item
-                  label="Gaza Humanitarian Relief"
-                  value="Gaza Humanitarian Relief"
+                  label="Zakat ul-Fitr/Fitra"
+                  value="Zakat ul-Fitr/Fitra"
                 />
                 <Picker.Item
                   label="Eid Qurbani/Udhia"
@@ -394,7 +404,11 @@ export default class Donate extends React.Component {
                   label="Burma Rohingya Humanitarian Relief"
                   value="Burma Rohingya Humanitarian Relief"
                 />
-                <Picker.Item label="Zakat Fund" value="Zakat Fund" />
+                <Picker.Item
+                  label="Burma Rohingya Humanitarian Relief"
+                  value="Burma Rohingya Humanitarian Relief"
+                />
+                <Picker.Item label="Yemen Food Aid" value="Yemen Food Aid" />
               </Picker>
               <Button
                 title="Donate"
@@ -430,27 +444,64 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: Constants.statusBarHeight + 20,
     backgroundColor: "#ecf0f1"
   },
   itemContainer: {
-    justifyContent: "flex-end",
+    justifyContent: "center",
     borderRadius: 5,
     width: width - 50,
-    height: height * 0.14
+    height: height * 0.1,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 6
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+
+    elevation: 12
+  },
+  donateContainer: {
+    justifyContent: "center",
+    borderRadius: 5,
+    width: width - 40,
+    height: height * 0.14,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 6
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+
+    elevation: 12
   },
   itemName: {
     fontSize: 45,
     color: "#fff",
-    fontWeight: "600"
+    fontWeight: "600",
+    alignSelf: "center"
+  },
+  donate: {
+    fontSize: 35,
+    color: "#fff",
+    alignSelf: "center"
   },
   itemDesc: {
     fontSize: 18,
     color: "#fff",
-    fontWeight: "600"
+    fontWeight: "600",
+    alignSelf: "center"
   },
   recent: {
     width: width - 50,
-    height: height * 0.15
+    height: height * 0.11
+  },
+  donateView: {
+    width: width - 50,
+    height: height * 0.15,
+    alignContent: "center",
+    justifyContent: "center",
+    alignItems: "center"
   }
 });

@@ -20,7 +20,7 @@ const Textfield = MKTextField.textfield()
 export default class Privacy extends React.Component {
   render() {
     return (
-      <View style={{ padding: 15, flex: 1 }}>
+      <ScrollView style={{ padding: 15, flex: 1 }}>
         <Text>
           Mercy-USA does not sell, lend or share email addresses, postal
           addresses, telephone numbers or any other personal information
@@ -37,7 +37,6 @@ export default class Privacy extends React.Component {
           to info@mercyusa.org.
         </Text>
         <Text>
-          {" "}
           The Mercy-USA App allows for personal information to be saved locally
           for the purpose of facilitating quick donations. The Mercy-USA App
           does not sell, lend, or share email addresses, postal addresses,
@@ -48,7 +47,7 @@ export default class Privacy extends React.Component {
           personal information, tap “clear personal information” in the Personal
           Info screen located under Settings.
         </Text>
-      </View>
+      </ScrollView>
     );
   }
 }

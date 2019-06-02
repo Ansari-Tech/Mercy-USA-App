@@ -43,7 +43,7 @@ export default class Loans extends React.Component {
                 </Text>
                 <Text style={styles.modalBody}>
                   Any money you have loaned to friends, family, or acquaintances
-                  that you expect to be payed back in reasonable amount of time.
+                  that you expect to be paid back in reasonable amount of time.
                   An example could be money lent to a family member to buy a
                   car, or money borrowed by a friend for bills.
                 </Text>

@@ -8,14 +8,15 @@ import {
   Animated,
   Image,
   Dimensions,
-  Linking
+  Linking,
+  Button
 } from "react-native";
 
 import { MapView, Asset } from "expo";
-
+import NavigationService from "../NavigationService";
 const { width, height } = Dimensions.get("window");
 
-const CARD_HEIGHT = height / 3;
+const CARD_HEIGHT = height / 2;
 const CARD_WIDTH = width - 60;
 
 export default class Projects extends React.Component {
@@ -33,7 +34,32 @@ export default class Projects extends React.Component {
         description:
           "Mercy-USA has been serving humanitarian needs to the people of Syria since 2012 with food aid, healthcare, shelter and winterization projects.  We currently provide over 86,000 people with monthly food baskets. Your donation of $110 will feed an entire family for a month. We provide iftar, fitra and udhia/qurbani each year with your Zakat.",
         link: "https://mercyusa.org/project/syria/",
-        image: require("../assets/syria.png")
+        image: require("../assets/syria.png"),
+        designation: "Syria Humanitarian Relief"
+      },
+      {
+        coordinate: {
+          latitude: 34.86,
+          longitude: 38.86
+        },
+        title: "Yemen",
+        description:
+          "Mercy-USA is providing monthly food baskets for families in Yemen with our implementing partner, Turkish Red Crescent. Distributions are taking place in Marib, Aden, Hadramawt and Taiz. These distributions are helping locals in need as well as internally displaced persons from other areas like Sana’a, Hodeida, Hajjah, Amran, and others.",
+        link: "https://mercyusa.org/project/syria/",
+        image: require("../assets/yemen.png"),
+        designation: "Yemen Food Aid"
+      },
+      {
+        coordinate: {
+          latitude: 31.5144,
+          longitude: 34.446
+        },
+        title: "Gaza Strip",
+        description:
+          "Mercy-USA is supporting an important education project operated by the United Nations Relief and Works Agency for Palestine Refugees (UNRWA) to offer blind or visually impaired children early intervention and subsequent integration into mainstream schools. This special school provides material and technical support to the children to access learning.",
+        link: "https://mercyusa.org/project/gaza-strip/",
+        image: require("../assets/gaza.png"),
+        designation: "Gaza Humanitarian Relief"
       },
       {
         coordinate: {
@@ -42,9 +68,10 @@ export default class Projects extends React.Component {
         },
         title: "Lebanon",
         description:
-          "Mercy-USA has been bringing vital healthcare to Somalia for more than 20 years, including mother and child health and nutrition clinics across the country. We have been providing safe access to clean water with more than 600 wells to date for sadaqah jariyah. We provide iftar, fitra and udhia/qurbani each year with your Zakat. ",
+          "Mercy-USA provides Syrian Refugees with healthcare and food aid. We provide vocational training for Palestinian Refugees. We provide iftar, fitra and udhia/qurbani each year with your Zakat.",
         link: "https://mercyusa.org/project/lebanon/",
-        image: require("../assets/lebanon.png")
+        image: require("../assets/lebanon.png"),
+        designation: "Measles Prevention and Healthcare in Lebanon"
       },
       {
         coordinate: {
@@ -55,7 +82,8 @@ export default class Projects extends React.Component {
         description:
           "Mercy-USA provides nutritional support for mothers and children, as well as hygiene and sanitation training and promotion. We provide iftar, fitra and udhia/qurbani each year with your Zakat.",
         link: "https://mercyusa.org/project/kenya/",
-        image: require("../assets/kenya.png")
+        image: require("../assets/kenya.png"),
+        designation: "Zakat ul-Fitr/Fitra"
       },
       {
         coordinate: {
@@ -66,7 +94,8 @@ export default class Projects extends React.Component {
         description:
           "Mercy-USA provides emergency disaster relief as well as agriculture support for small farmers. We provide iftar, fitra and udhia/qurbani each year with your Zakat.",
         link: "https://mercyusa.org/project/indonesia/",
-        image: require("../assets/indonesia.png")
+        image: require("../assets/indonesia.png"),
+        designation: "Indonesia Small Farmer Economic Development"
       },
       {
         coordinate: {
@@ -75,9 +104,10 @@ export default class Projects extends React.Component {
         },
         title: "Somalia",
         description:
-          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia",
+          "Mercy-USA has been bringing vital healthcare to Somalia for more than 20 years, including mother and child health and nutrition clinics across the country. We have been providing safe access to clean water with more than 600 wells to date for sadaqah jariyah. Mercy-USA supports thousands of students in Somalia with a comprehensive education project.",
         link: "https://mercyusa.org/project/somalia/",
-        image: require("../assets/somalia.png")
+        image: require("../assets/somalia.png"),
+        designation: "Somalia Health Programs"
       },
       {
         coordinate: {
@@ -88,7 +118,8 @@ export default class Projects extends React.Component {
         description:
           "Mercy-USA provides iftar, fitra and udhia/qurbani each year with your Zakat as well as emergency humanitarian relief. ",
         link: "https://mercyusa.org/project/india/",
-        image: require("../assets/india.png")
+        image: require("../assets/india.png"),
+        designation: "Zakat ul-Fitr/Fitra"
       },
       {
         coordinate: {
@@ -99,7 +130,8 @@ export default class Projects extends React.Component {
         description:
           "Mercy-USA provides support for Refugees as well as local support for Detroit area homeless shelters. We have a school backpack program for disadvantaged students in Detroit. We distribute udhia/qurbani with your Zakat.",
         link: "https://mercyusa.org/project/united-states/",
-        image: require("../assets/america.png")
+        image: require("../assets/america.png"),
+        designation: "Greatest Need"
       },
       {
         coordinate: {
@@ -110,7 +142,8 @@ export default class Projects extends React.Component {
         description:
           "Mercy-USA provides supplemental education programs for youth with English and computer skills training. We stock public school libraries each year with new titles. We provide farmers with technical assistance. We provide iftar, fitra and udhia/qurbani each year with your Zakat.",
         link: "https://mercyusa.org/project/Albania/",
-        image: require("../assets/albania.png")
+        image: require("../assets/albania.png"),
+        designation: "Albania Orphans & Economic Development"
       },
       {
         coordinate: {
@@ -121,12 +154,13 @@ export default class Projects extends React.Component {
         description:
           "Mercy-USA provides supplemental education programs for youth and workforce skills training for young adults. Our Agricultural Education Center provides technical assistance to farmers, students and helps local communities with seedlings for kitchen gardens. We provide iftar, fitra and udhia/qurbani each year with your Zakat.",
         link: "https://mercyusa.org/project/bosnia/",
-        image: require("../assets/bosnia.png")
+        image: require("../assets/bosnia.png"),
+        designation: "Bosnia Orphans & Economic Development"
       }
     ],
     region: {
-      latitude: 34.86,
-      longitude: 38.86,
+      latitude: 24.86,
+      longitude: 34.86,
       latitudeDelta: 20.0,
       longitudeDelta: 20.0
     },
@@ -254,6 +288,24 @@ export default class Projects extends React.Component {
                     {marker.title}
                   </Text>
                 </View>
+                <View
+                  style={{
+                    position: "absolute",
+                    bottom: 10,
+                    left: 0,
+                    right: 0
+                  }}
+                >
+                  <Button
+                    title="Donate to this project"
+                    onPress={() => {
+                      NavigationService.navigate("Donate", {
+                        isVisible: true,
+                        designation: marker.designation
+                      });
+                    }}
+                  />
+                </View>
               </View>
             ))}
           </Animated.ScrollView>
@@ -292,7 +344,7 @@ const styles = StyleSheet.create({
     },
     width: width - 80,
     margin: 10,
-    height: 270,
+    height: 320,
     borderRadius: 10
   },
   textContent: {
@@ -307,7 +359,8 @@ const styles = StyleSheet.create({
     color: "#ffffff",
     textShadowColor: "rgba(0, 0, 0, 0.75)",
     textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10
+    textShadowRadius: 10,
+    shadowOpacity: 1.5
   },
   cardDescription: {
     fontSize: 12,

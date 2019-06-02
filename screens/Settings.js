@@ -6,9 +6,9 @@ const Dimensions = require("Dimensions");
 const { width } = Dimensions.get("window");
 const aboutSection = [
   {
-    title: "About",
+    title: "Contact Mercy-USA",
     icon: "info-outline",
-    screen: "About"
+    screen: "contact"
   },
   {
     title: "Privacy Policy",
@@ -32,7 +32,7 @@ export default class Settings extends React.Component {
       <ScrollView
         style={{ flex: 1, backgroundColor: "#EFF0F3", paddingTop: 35 }}
       >
-        <View style={{ padding: 10 }}>
+        <View style={{ paddingTop: 10 }}>
           {settingsSection.map((item, i) => (
             <ListItem
               onPress={() => {
@@ -46,7 +46,7 @@ export default class Settings extends React.Component {
             />
           ))}
         </View>
-        <View style={{ padding: 10 }}>
+        <View style={{ paddingTop: 10 }}>
           {aboutSection.map((item, i) => (
             <ListItem
               onPress={() => {

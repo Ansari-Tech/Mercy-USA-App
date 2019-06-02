@@ -21,13 +21,14 @@ import Settings from "./screens/Settings";
 import UserInfo from "./screens/UserInfo";
 import Projects from "./screens/Projects";
 import Privacy from "./screens/Privacy";
+import contact from "./screens/contact";
 const TabNavigator = createBottomTabNavigator(
   {
     Home: {
       screen: HomeScreen
     },
-    Locations: Locations,
     Projects: Projects,
+    // Locations: Locations,
     Settings: Settings
   },
   {
@@ -72,6 +73,7 @@ const AppNavigator = createStackNavigator(
     UserInfo: UserInfo,
     Projects: Projects,
     Privacy: Privacy,
+    contact: contact,
     TabNavigator: {
       screen: TabNavigator,
       navigationOptions: {
@@ -126,6 +128,7 @@ export default class App extends React.Component {
         require("./assets/america.png"),
         require("./assets/albania.png"),
         require("./assets/bosnia.png"),
+        require("./assets/yemen.png"),
         require("./assets/logo.png")
       ])
     ]);
