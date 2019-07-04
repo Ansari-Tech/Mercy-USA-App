@@ -177,6 +177,7 @@ export default class Donate extends React.Component {
           <Button
             color="#FF0000"
             title="Clear Recent Donations"
+            style={{ padding: 10 }}
             onPress={() => {
               const donations = Object.assign({}, this.state.donations);
               donations[0].amount = -10;
@@ -380,6 +381,7 @@ export default class Donate extends React.Component {
                   label="Zakat ul-Fitr/Fitra"
                   value="Zakat ul-Fitr/Fitra"
                 />
+                <Picker.Item label="Zakat Fund" value="Zakat Fun" />
                 <Picker.Item
                   label="Eid Qurbani/Udhia"
                   value="Eid Qurbani/Udhia"
@@ -405,8 +407,8 @@ export default class Donate extends React.Component {
                   value="Burma Rohingya Humanitarian Relief"
                 />
                 <Picker.Item
-                  label="Burma Rohingya Humanitarian Relief"
-                  value="Burma Rohingya Humanitarian Relief"
+                  label="Support for Refugees and the Homeless & Others in Need in the USA"
+                  value="Support for Refugees and the Homeless & Others in Need in the USA"
                 />
                 <Picker.Item label="Yemen Food Aid" value="Yemen Food Aid" />
               </Picker>
@@ -428,17 +430,19 @@ export default class Donate extends React.Component {
             {buttonThree}
             {clearButton}
           </Card>
-          <Button
-            title="View & edit your personal information"
-            onPress={() => {
-              NavigationService.navigate("UserInfo");
-            }}
-          />
         </View>
       );
     }
   }
 }
+/*
+ <Button
+            title="View & edit your personal information"
+            onPress={() => {
+              NavigationService.navigate("UserInfo");
+            }}
+          />
+          */
 const styles = StyleSheet.create({
   container: {
     flex: 1,

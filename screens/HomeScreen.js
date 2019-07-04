@@ -34,8 +34,8 @@ export default class HomeScreen extends React.Component {
         id: "Assets"
       },
       {
-        name: "Office Locations",
-        id: "Locations"
+        name: "Global Projects",
+        id: "Projects"
       }
     ];
 

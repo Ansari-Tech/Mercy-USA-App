@@ -27,7 +27,7 @@ const TabNavigator = createBottomTabNavigator(
     Home: {
       screen: HomeScreen
     },
-    Projects: Projects,
+    Locations: Locations,
     // Locations: Locations,
     Settings: Settings
   },
@@ -41,7 +41,7 @@ const TabNavigator = createBottomTabNavigator(
           iconName = `ios-information-circle${focused ? "" : "-outline"}`;
         } else if (routeName === "Settings") {
           iconName = `ios-options`;
-        } else if (routeName == "Projects") {
+        } else if (routeName == "Locations") {
           iconName = "ios-compass";
         } else if (routeName == "Locations") {
           iconName = "ios-flag";

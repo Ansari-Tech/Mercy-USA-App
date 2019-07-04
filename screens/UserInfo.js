@@ -146,30 +146,35 @@ export default class UserInfo extends React.Component {
             }}
           />
         </View>
-        <Button
-          title="Save"
-          onPress={() => {
-            const user = Object.assign({}, this.state.user, {});
-            this.setState({ user }, this.setUser);
-          }}
-        />
-        <Button
-          color="#FF0000"
-          title="Clear Personal Info"
-          onPress={() => {
-            const user = Object.assign({}, this.state.user, {
-              fname: "",
-              lname: "",
-              email: "",
-              phone: "",
-              street: "",
-              city: "",
-              state: "",
-              zip: ""
-            });
-            this.setState({ user }, this.setUser);
-          }}
-        />
+        <View style={styles.buttonContainer}>
+          <Button
+            title="Save"
+            onPress={() => {
+              const user = Object.assign({}, this.state.user, {});
+              this.setState({ user }, this.setUser);
+            }}
+          />
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <Button
+            color="#FF0000"
+            title="Clear Personal Info"
+            onPress={() => {
+              const user = Object.assign({}, this.state.user, {
+                fname: "",
+                lname: "",
+                email: "",
+                phone: "",
+                street: "",
+                city: "",
+                state: "",
+                zip: ""
+              });
+              this.setState({ user }, this.setUser);
+            }}
+          />
+        </View>
       </KeyboardAwareScrollView>
     );
   }
@@ -185,5 +190,9 @@ const styles = StyleSheet.create({
     height: 100,
     borderWidth: 1,
     backgroundColor: "#7685ed"
+  },
+  buttonContainer: {
+    flex: 1,
+    padding: 10
   }
 });

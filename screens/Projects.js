@@ -39,8 +39,8 @@ export default class Projects extends React.Component {
       },
       {
         coordinate: {
-          latitude: 34.86,
-          longitude: 38.86
+          latitude: 15.195069,
+          longitude: 47.329486
         },
         title: "Yemen",
         description:
@@ -296,15 +296,17 @@ export default class Projects extends React.Component {
                     right: 0
                   }}
                 >
-                  <Button
-                    title="Donate to this project"
-                    onPress={() => {
-                      NavigationService.navigate("Donate", {
-                        isVisible: true,
-                        designation: marker.designation
-                      });
-                    }}
-                  />
+                  <View style={styles.donateButton}>
+                    <Button
+                      title="Donate to this project"
+                      onPress={() => {
+                        NavigationService.navigate("Donate", {
+                          isVisible: true,
+                          designation: marker.designation
+                        });
+                      }}
+                    />
+                  </View>
                 </View>
               </View>
             ))}
@@ -350,7 +352,7 @@ const styles = StyleSheet.create({
   textContent: {
     alignContent: "center",
     paddingTop: 15,
-    paddingLeft: 10
+    paddingLeft: 15
   },
   cardTitle: {
     fontSize: 25,
@@ -372,6 +374,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "blue",
     paddingLeft: 0
+  },
+  donateButton: {
+    width: width - 80 - 45,
+    alignContent: "center",
+    alignItems: "center",
+    paddingLeft: 50
   }
 });
 
