@@ -45,7 +45,7 @@ export default class Projects extends React.Component {
         title: "Yemen",
         description:
           "Mercy-USA is providing monthly food baskets for families in Yemen with our implementing partner, Turkish Red Crescent. Distributions are taking place in Marib, Aden, Hadramawt and Taiz. These distributions are helping locals in need as well as internally displaced persons from other areas like Sana’a, Hodeida, Hajjah, Amran, and others.",
-        link: "https://mercyusa.org/project/syria/",
+        link: "https://mercyusa.org/project/yemen",
         image: require("../assets/yemen.png"),
         designation: "Yemen Food Aid"
       },
@@ -59,7 +59,7 @@ export default class Projects extends React.Component {
           "Mercy-USA is supporting an important education project operated by the United Nations Relief and Works Agency for Palestine Refugees (UNRWA) to offer blind or visually impaired children early intervention and subsequent integration into mainstream schools. This special school provides material and technical support to the children to access learning.",
         link: "https://mercyusa.org/project/gaza-strip/",
         image: require("../assets/gaza.png"),
-        designation: "Gaza Humanitarian Relief"
+        designation: "Gaza School for Blind Children"
       },
       {
         coordinate: {
@@ -131,7 +131,8 @@ export default class Projects extends React.Component {
           "Mercy-USA provides support for Refugees as well as local support for Detroit area homeless shelters. We have a school backpack program for disadvantaged students in Detroit. We distribute udhia/qurbani with your Zakat.",
         link: "https://mercyusa.org/project/united-states/",
         image: require("../assets/america.png"),
-        designation: "Greatest Need"
+        designation:
+          "Support for Refugees and the Homeless & Others in Need in the USA"
       },
       {
         coordinate: {

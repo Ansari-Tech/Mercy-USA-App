@@ -1,10 +1,10 @@
 {
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "packagerPort": 19001,
+  "packagerPid": 6378,
+  "expoServerNgrokUrl": "https://de-azw.ansari-tech.mercyusaapp.exp.direct",
+  "packagerNgrokUrl": "https://packager.de-azw.ansari-tech.mercyusaapp.exp.direct",
+  "ngrokPid": 6389,
   "devToolsPort": 19002,
-  "expoServerPort": null,
+  "expoServerPort": 19000,
   "webpackServerPort": null
 }

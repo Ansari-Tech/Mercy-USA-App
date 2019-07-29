@@ -1,5 +1,4 @@
 import React from "react";
-import { FlatGrid } from "react-native-super-grid";
 import {
   View,
   Image,
@@ -10,39 +9,22 @@ import {
   Dimensions
 } from "react-native";
 import NavigationService from "../NavigationService";
+import { FlatGrid } from "react-native-super-grid";
 const { width, height } = Dimensions.get("window");
 
-export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    headerBackground: (
-      <Image
-        source={require("../assets/logo.png")}
-        style={{
-          width: "auto",
-          height: "auto",
-          alignSelf: "center",
-          resizeMode: "contain"
-        }}
-      />
-    )
-  };
+export default class UnitConversion extends React.Component {
   render() {
-    const items = [
-      { name: "Donate", id: "Donate" },
+    const conversions = [
+      { name: "Measurements", id: "Measurements" },
       {
-        name: "Zakat Calculator",
-        id: "Assets"
+        name: "Distance",
+        id: "distance"
       },
       {
-        name: "Global Projects",
-        id: "Projects"
-      },
-      {
-        name: "Unit Conversions",
-        id: "UnitConversion"
+        name: "Currency",
+        id: "currency"
       }
     ];
-
     return (
       <View style={styles.container}>
         <View style={{ flex: 0.75 }}>
@@ -58,7 +40,7 @@ export default class HomeScreen extends React.Component {
         </View>
         <FlatGrid
           itemDimension={width - 10}
-          items={items}
+          items={conversions}
           style={styles.gridView}
           renderItem={({ item, index }) => (
             <TouchableOpacity
@@ -80,7 +62,6 @@ export default class HomeScreen extends React.Component {
     );
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1

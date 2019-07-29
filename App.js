@@ -1,5 +1,5 @@
 import React from "react";
-import { StatusBar, Alert } from "react-native";
+import { StatusBar } from "react-native";
 import { Asset, AppLoading } from "expo";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import {
@@ -22,13 +22,15 @@ import UserInfo from "./screens/UserInfo";
 import Projects from "./screens/Projects";
 import Privacy from "./screens/Privacy";
 import contact from "./screens/contact";
+import UnitConversion from "./screens/UnitConversion";
+import Measurements from "./screens/Conversions/Measurements";
+
 const TabNavigator = createBottomTabNavigator(
   {
     Home: {
       screen: HomeScreen
     },
     Locations: Locations,
-    // Locations: Locations,
     Settings: Settings
   },
   {
@@ -46,8 +48,6 @@ const TabNavigator = createBottomTabNavigator(
         } else if (routeName == "Locations") {
           iconName = "ios-flag";
         }
-
-        // You can return any component that you like here!
         return <IconComponent name={iconName} size={25} color={tintColor} />;
       }
     }),
@@ -74,6 +74,8 @@ const AppNavigator = createStackNavigator(
     Projects: Projects,
     Privacy: Privacy,
     contact: contact,
+    UnitConversion: UnitConversion,
+    Measurements: Measurements,
     TabNavigator: {
       screen: TabNavigator,
       navigationOptions: {
@@ -82,7 +84,7 @@ const AppNavigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: "TabNavigator"
+    initialRouteName: "Measurements"
   }
 );
 
