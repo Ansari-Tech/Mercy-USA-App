@@ -1,6 +1,7 @@
 import React from "react";
 import { StatusBar } from "react-native";
-import { Asset, AppLoading } from "expo";
+import { AppLoading } from "expo";
+import { Asset } from "expo-asset";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import {
   createStackNavigator,
@@ -24,6 +25,9 @@ import Privacy from "./screens/Privacy";
 import contact from "./screens/contact";
 import UnitConversion from "./screens/UnitConversion";
 import Measurements from "./screens/Conversions/Measurements";
+import SalatTimes from "./screens/SalatTimes";
+import IslamicCalendar from "./screens/IslamicCalendar";
+import Weather from "./screens/Weather";
 
 const TabNavigator = createBottomTabNavigator(
   {
@@ -76,6 +80,10 @@ const AppNavigator = createStackNavigator(
     contact: contact,
     UnitConversion: UnitConversion,
     Measurements: Measurements,
+    SalatTimes: SalatTimes,
+    IslamicCalendar: IslamicCalendar,
+    Weather,
+    Weather,
     TabNavigator: {
       screen: TabNavigator,
       navigationOptions: {
@@ -84,7 +92,7 @@ const AppNavigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: "Measurements"
+    initialRouteName: "Weather"
   }
 );
 

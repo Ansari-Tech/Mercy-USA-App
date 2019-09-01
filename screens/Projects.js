@@ -12,7 +12,8 @@ import {
   Button
 } from "react-native";
 
-import { MapView, Asset } from "expo";
+import MapView from "react-native-maps";
+import { Asset } from "expo-asset";
 import NavigationService from "../NavigationService";
 const { width, height } = Dimensions.get("window");
 

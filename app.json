@@ -3,7 +3,7 @@
     "name": "Mercy-USA",
     "slug": "ZakatApp",
     "privacy": "public",
-    "sdkVersion": "32.0.0",
+    "sdkVersion": "34.0.0",
     "platforms": ["ios", "android"],
     "version": "1.0.3",
     "primaryColor": "#045484",

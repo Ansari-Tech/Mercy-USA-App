@@ -40,12 +40,20 @@ export default class HomeScreen extends React.Component {
       {
         name: "Unit Conversions",
         id: "UnitConversion"
+      },
+      {
+        name: "Salat Times",
+        id: "SalatTimes"
+      },
+      {
+        name: "Qibla Compass",
+        id: "Qibla"
       }
     ];
 
     return (
       <View style={styles.container}>
-        <View style={{ flex: 0.75 }}>
+        <View style={{ flex: 0.3 }}>
           <Image
             source={require("../assets/logo.png")}
             style={{
@@ -57,7 +65,7 @@ export default class HomeScreen extends React.Component {
           />
         </View>
         <FlatGrid
-          itemDimension={width - 10}
+          itemDimension={130}
           items={items}
           style={styles.gridView}
           renderItem={({ item, index }) => (
@@ -101,7 +109,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 25,
     padding: 10,
-    height: 100,
+    height: 150,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -113,7 +121,7 @@ const styles = StyleSheet.create({
     elevation: 12
   },
   itemName: {
-    fontSize: 35,
+    fontSize: 30,
     alignSelf: "center",
     color: "#fff"
   },

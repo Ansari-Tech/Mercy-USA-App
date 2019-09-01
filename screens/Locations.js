@@ -11,7 +11,7 @@ import {
   TouchableOpacity
 } from "react-native";
 
-import { MapView, Marker } from "expo";
+import MapView from "react-native-maps";
 
 const { width, height } = Dimensions.get("window");
 
