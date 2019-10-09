@@ -48,6 +48,14 @@ export default class HomeScreen extends React.Component {
       {
         name: "Qibla Compass",
         id: "Qibla"
+      },
+      {
+        name: "Islamic Calendar",
+        id: "IslamicCalendar"
+      },
+      {
+        name: "Weather",
+        id: "Weather"
       }
     ];
 

@@ -15,6 +15,7 @@
     "expo-asset": "^6.0.0",
     "expo-permissions": "^6.0.0",
     "expo-sensors": "^6.0.0",
+    "hijrah-date": "^1.0.3",
     "react": "16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-34.0.0.tar.gz",
     "react-native-calendars": "^1.208.0",

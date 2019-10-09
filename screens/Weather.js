@@ -70,8 +70,15 @@ export default class Weather extends React.Component {
           list[i].validTime.substring(0, 10) ==
           referenceList[j].validTime.substring(0, 10)
         ) {
+          console.log(list[i]);
           newList[j] = list[i];
         }
+      }
+      if (typeof newList[j] == "undefined" || newList[j] == null) {
+        newList[j] = {
+          validTime: "2019-10-13T17:00:00+00:00/PT2H",
+          value: [{ coverage: " ", weather: " " }]
+        };
       }
     }
     return newList;
@@ -107,14 +114,19 @@ export default class Weather extends React.Component {
               responseJson.properties.temperature.values,
               responseJson.properties.maxTemperature.values
             );
-            console.log(URL);
             let covers = this._trimEntriesToDays(
               responseJson.properties.skyCover.values,
               responseJson.properties.maxTemperature.values
             );
+            let trimmedForecast = this._trimEntriesToDays(
+              responseJson.properties.weather.values,
+              responseJson.properties.maxTemperature.values
+            );
             for (i = 0; i <= 4; i++) {
               day = {
-                day: responseJson.properties.maxTemperature.values[i].validTime,
+                day: responseJson.properties.maxTemperature.values[
+                  i
+                ].validTime.substring(0, 10),
                 temperature: Math.round(temperatures[i].value * (9 / 5) + 32),
                 high:
                   Math.round(
@@ -127,10 +139,14 @@ export default class Weather extends React.Component {
                       (9 / 5)
                   ) + 32,
                 weather:
-                  responseJson.properties.weather.values[i].value[0].coverage +
-                  " " +
-                  responseJson.properties.weather.values[i].value[0].weather,
-                cover: covers[i].value
+                  trimmedForecast[i].value[0].weather != null &&
+                  trimmedForecast[i].value[0].coverage != null &&
+                  trimmedForecast[i].value[0].coverage != " " &&
+                  trimmedForecast[i].value[0].weather != " "
+                    ? trimmedForecast[i].value[0].coverage.replace("_", " ") +
+                      " of " +
+                      trimmedForecast[i].value[0].weather
+                    : "clear"
               };
               updatedForecast[i] = day;
             }
@@ -156,12 +172,12 @@ export default class Weather extends React.Component {
             <Text style={styles.name}>{item.day}</Text>
             <View style={{ flexDirection: "row" }}>
               <Text>
-                <Text style={styles.time}>{item.temperature}°</Text>
-                <Text style={styles.amPM}>high: {item.high}°</Text>
-                <Text style={styles.amPM}>low: {item.low}°</Text>
-                <Text style={styles.amPM}>cover: {item.cover}</Text>
+                <Text style={styles.time}>{item.temperature}° </Text>
+                <Text style={styles.amPM}>high: {item.high}°, </Text>
+                <Text style={styles.amPM}>low: {item.low}° </Text>
               </Text>
             </View>
+            <Text style={styles.weather}>{item.weather}</Text>
           </View>
         )}
       />
@@ -176,15 +192,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 5,
     padding: 10,
-    height: 100
+    height: 150
   },
   name: {
     fontSize: 16,
     color: "#fff",
     fontWeight: "600"
   },
+  weather: {
+    fontSize: 25,
+    color: "#fff"
+  },
   amPM: {
-    fontSize: 16,
+    fontSize: 20,
     color: "#fff",
     fontWeight: "600"
   },

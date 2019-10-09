@@ -4,7 +4,10 @@
     "slug": "ZakatApp",
     "privacy": "public",
     "sdkVersion": "34.0.0",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "version": "1.0.3",
     "primaryColor": "#045484",
     "orientation": "portrait",
@@ -17,7 +20,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.AnsariTech.MercyUSA"
