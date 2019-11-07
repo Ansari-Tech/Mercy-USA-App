@@ -1,56 +1,12 @@
 import React from "react";
 import { View, Text, Button } from "react-native";
+import HijriDate, {toHijri} from "hijri-date/lib/safe"
 import NavigationService from "../NavigationService";
 import HijrahDate from "hijrah-date";
+
 import {
   Calendar,
-  LocaleConfig,
-  CalendarList,
-  Agenda
 } from "react-native-calendars";
-
-LocaleConfig.locales["islamic"] = {
-  monthNames: [
-    "Muharram",
-    "Safar",
-    "Rabi' al-awwal",
-    "Rabi' al-thani",
-    "Jumada al-awwal",
-    "Jumada al-thani",
-    "Rajab",
-    "Sha'ban",
-    "Ramadan",
-    "Shawwal",
-    "Dhu al-Qi'dah",
-    "Dhu al-Hijjah"
-  ],
-  monthNamesShort: [
-    "Muharram",
-    "Safar",
-    "Rabi' al-awwal",
-    "Rabi' al-thani",
-    "Jumada al-awwal",
-    "Jumada al-thani",
-    "Rajab",
-    "Sha'ban",
-    "Ramadan",
-    "Shawwal",
-    "Dhu al-Qi'dah",
-    "Dhu al-Hijjah"
-  ],
-  dayNames: [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-  ],
-  dayNamesShort: ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"],
-  today: "today"
-};
-LocaleConfig.defaultLocale = "islamic";
 
 export default class IslamicCalendar extends React.Component {
   constructor(props) {
@@ -60,11 +16,8 @@ export default class IslamicCalendar extends React.Component {
     };
   }
   getDate(date) {
-    let gregDate = new Date(date.dateString);
-    let hijra = new HijrahDate(gregDate);
-    console.log(gregDate);
-    console.log(hijra);
-    return hijra.getDate();
+    console.log(toHijri(new Date(date.dateString)));
+    return toHijri(new Date(date.dateString)).date;
   }
   render() {
     const mark = {
@@ -74,7 +27,6 @@ export default class IslamicCalendar extends React.Component {
       <View>
         <Calendar
           style={{ height: 500 }}
-          markedDates={mark}
           dayComponent={({ date, state, marking }) => {
             return (
               <View
