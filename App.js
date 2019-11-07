@@ -24,7 +24,7 @@ import Projects from "./screens/Projects";
 import Privacy from "./screens/Privacy";
 import contact from "./screens/contact";
 import UnitConversion from "./screens/UnitConversion";
-import Measurements from "./screens/Conversions/Measurements";
+import Measurements from "./screens/Measurements";
 import SalatTimes from "./screens/SalatTimes";
 import IslamicCalendar from "./screens/IslamicCalendar";
 import Weather from "./screens/Weather";
@@ -82,8 +82,7 @@ const AppNavigator = createStackNavigator(
     Measurements: Measurements,
     SalatTimes: SalatTimes,
     IslamicCalendar: IslamicCalendar,
-    Weather,
-    Weather,
+    Weather: Weather,
     TabNavigator: {
       screen: TabNavigator,
       navigationOptions: {
@@ -92,7 +91,7 @@ const AppNavigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: "Weather"
+    initialRouteName: "TabNavigator"
   }
 );
 

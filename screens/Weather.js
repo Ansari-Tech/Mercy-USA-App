@@ -145,7 +145,7 @@ export default class Weather extends React.Component {
                   trimmedForecast[i].value[0].weather != " "
                     ? trimmedForecast[i].value[0].coverage.replace("_", " ") +
                       " of " +
-                      trimmedForecast[i].value[0].weather
+                      trimmedForecast[i].value[0].weather.replace("_", " ")
                     : "clear"
               };
               updatedForecast[i] = day;
@@ -201,6 +201,7 @@ const styles = StyleSheet.create({
   },
   weather: {
     fontSize: 25,
+    fontStyle: "italic",
     color: "#fff"
   },
   amPM: {
