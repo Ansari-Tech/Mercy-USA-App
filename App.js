@@ -28,6 +28,7 @@ import Measurements from "./screens/Measurements";
 import SalatTimes from "./screens/SalatTimes";
 import IslamicCalendar from "./screens/IslamicCalendar";
 import Weather from "./screens/Weather";
+import WeatherDay from "./screens/WeatherDay"
 
 const TabNavigator = createBottomTabNavigator(
   {
@@ -83,6 +84,7 @@ const AppNavigator = createStackNavigator(
     SalatTimes: SalatTimes,
     IslamicCalendar: IslamicCalendar,
     Weather: Weather,
+    WeatherDay: WeatherDay,
     TabNavigator: {
       screen: TabNavigator,
       navigationOptions: {
