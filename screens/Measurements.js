@@ -1,26 +1,28 @@
 import React from "react";
 import { View, Text, StyleSheet, TextInput, Picker } from "react-native";
 import NavigationService from "../NavigationService";
+var convert = require('convert-units');
+
 export default class Measurements extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       fromValue: 1,
       toValue: 2.54,
-      fromUnit: 25.4,
-      toUnit: 10
+      fromUnit: "in",
+      toUnit: "mm"
     };
   }
   render() {
     const unitList = {
-      inch: 25.4,
-      foot: 304.8,
-      yard: 914.4,
-      mile: 1609000,
-      millimeter: 1,
-      centimeter: 10,
-      meter: 1000,
-      kilometer: 1000000
+      inch: "in",
+      foot: "ft-us",
+      yard: "yd",
+      mile: "mi",
+      millimeter: "mm",
+      centimeter: "cm",
+      meter: "m",
+      kilometer: "km"
     };
 
     return (
@@ -29,10 +31,9 @@ export default class Measurements extends React.Component {
           <TextInput
             style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
             keyboardType="numeric"
-            autoFocus="true"
+            autoFocus={true}
             onChangeText={fromValue => {
-              let convertedVal =
-                (fromValue * this.state.fromUnit) / this.state.toUnit;
+              let convertedVal = convert(fromValue).from(this.state.fromUnit).to(this.state.toUnit);
               this.setState({ toValue: convertedVal, fromValue: fromValue });
             }}
             value={this.state.fromValue.toString()}
@@ -42,11 +43,9 @@ export default class Measurements extends React.Component {
           <Picker
             mode="dropdown"
             selectedValue={this.state.fromUnit}
-            onValueChange={(value, unit) => {
-              this.setState({ fromUnit: value });
-              let convertedVal =
-                (this.state.fromValue * this.state.fromUnit) /
-                this.state.toUnit;
+            onValueChange={(fromUnit, unit) => {
+              this.setState({ fromUnit: fromUnit });
+              let convertedVal = convert(this.state.fromValue).from(fromUnit).to(this.state.toUnit);
               this.setState({ toValue: convertedVal });
             }}
           >
@@ -67,11 +66,9 @@ export default class Measurements extends React.Component {
           <Picker
             mode="dropdown"
             selectedValue={this.state.toUnit}
-            onValueChange={(value, unit) => {
-              this.setState({ toUnit: value });
-              let convertedVal =
-                (this.state.fromValue * this.state.fromUnit) /
-                this.state.toUnit;
+            onValueChange={(toUnit, unit) => {
+              this.setState({ toUnit: toUnit });
+              let convertedVal = convert(this.state.fromValue).from(this.state.fromUnit).to(toUnit);
               this.setState({ toValue: convertedVal });
             }}
           >
