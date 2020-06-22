@@ -50,9 +50,10 @@ export default class SalatTimes extends React.Component {
       latitude: JSON.stringify(location.coords.latitude),
       longitude: JSON.stringify(location.coords.longitude)
     });
-    let URL = "http://api.aladhan.com/v1/timings/1398332113?latitude=";
+    let URL = "http://api.aladhan.com/v1/timings/" +Math.floor(Date.now() / 1000) + "?latitude=";
     URL +=
       this.state.latitude + "&longitude=" + this.state.longitude + "&method=2";
+      console.log(URL);
     return fetch(URL)
       .then(response => response.json())
       .then(responseJson => {
