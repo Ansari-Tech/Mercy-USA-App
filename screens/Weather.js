@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Dimensions, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Dimensions, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import NavigationService from "../NavigationService";
 import { FlatGrid } from "react-native-super-grid";
 import * as Permissions from "expo-permissions";
@@ -18,7 +18,7 @@ export default class Weather extends React.Component {
       forecast: [
         {
           day: "One",
-          temperature: "",
+          temperature: null,
           high: "",
           low: "",
           weather: "",
@@ -26,7 +26,7 @@ export default class Weather extends React.Component {
         },
         {
           day: "Two",
-          temperature: "",
+          temperature: null,
           high: "",
           low: "",
           weather: "",
@@ -34,7 +34,7 @@ export default class Weather extends React.Component {
         },
         {
           day: "Three",
-          temperature: "",
+          temperature: null,
           high: "",
           low: "",
           weather: "",
@@ -42,7 +42,7 @@ export default class Weather extends React.Component {
         },
         {
           day: "Four",
-          temperature: "",
+          temperature: null,
           high: "",
           low: "",
           weather: "",
@@ -50,7 +50,7 @@ export default class Weather extends React.Component {
         },
         {
           day: "Five",
-          temperature: "",
+          temperature: null,
           high: "",
           low: "",
           weather: "",
@@ -84,8 +84,7 @@ export default class Weather extends React.Component {
     return fetch("https://api.weather.gov/points/" + this.state.latitude + "," + this.state.longitude)
       .then(response => response.json())
       .then(responseJson => {
-        callback("https://api.weather.gov/gridpoints/TOP/" +
-        responseJson.properties.gridX + "," + responseJson.properties.gridY);
+        callback(responseJson.properties.forecastGridData);
       });
   }
 
@@ -132,8 +131,8 @@ export default class Weather extends React.Component {
               trimmedForecast[i].value[0].coverage != null &&
               trimmedForecast[i].value[0].coverage != " " &&
               trimmedForecast[i].value[0].weather != " "
-                ? trimmedForecast[i].value[0].coverage.replace("_", " ") +
-                  " of " +
+                ? trimmedForecast[i].value[0].coverage.replace("_", " ") + trimmedForecast[i].value[0].coverage == "chance" ?
+                  " of " : "" +
                   trimmedForecast[i].value[0].weather.replace("_", " ")
                 : "clear"
           };
@@ -167,6 +166,15 @@ export default class Weather extends React.Component {
     this._getLocationAsync();
   }
   render() {
+    if (!this.state.forecast[0].temperature) {
+      return (
+        <ActivityIndicator
+          animating={true}
+          style={styles.indicator}
+          size="large"
+        />
+      );
+    }
     return (
       <FlatGrid
         itemDimension={width - 10}

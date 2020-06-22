@@ -8,7 +8,7 @@ const { width, height } = Dimensions.get("window");
 
 export default class Weather extends React.Component {
   static navigationOptions = {
-    title: "Local Weather"
+    title: "Hourly Weather"
   };
   constructor(props) {
     super(props);
@@ -29,12 +29,12 @@ export default class Weather extends React.Component {
       if(date === entry.validTime.substring(0,10)) {
         
         const hour = parseInt(entry.validTime.split("T")[1].split(":")[0], 10);
-        const formattedHour = formatTime(hour); 
+        const formattedHour = this.formatTime(hour); 
 
         while(newList.length > 0 && newList[newList.length -1].hour < 23  && newList[newList.length -1].hour - hour <-1) {
           let duplicate = JSON.parse(JSON.stringify(newList[newList.length -1]));
           duplicate.hour = duplicate.hour + 1;
-          duplicate.formattedHour = formatTime(duplicate.hour); 
+          duplicate.formattedHour =  this.formatTime(duplicate.hour); 
           console.log(newList[newList.length  -1].hour + " , " + duplicate.hour);
           newList.push(duplicate);
         }
@@ -88,6 +88,7 @@ formatData = (callback)=> {
 
 
   render() {
+    console.log(this.state.forecast);
     return (
       <FlatGrid
         itemDimension={width - 10}
@@ -99,7 +100,6 @@ formatData = (callback)=> {
             <View style={{ flexDirection: "row" }}>
               <Text>
                 <Text style={styles.time}>{item.temperature}° </Text>
-                <Text style={styles.amPM}>{item.chill}°</Text>
               </Text>
             </View>
             <Text style={styles.weather}>{item.weather}</Text>
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 5,
     padding: 10,
-    height: 75
+    height: 65
   },
   name: {
     fontSize: 16,

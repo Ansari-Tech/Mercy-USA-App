@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Dimensions, Text, Alert } from "react-native";
+import { StyleSheet, View, Dimensions, Text, ActivityIndicator } from "react-native";
 import NavigationService from "../NavigationService";
 import { Constants } from "expo";
 import { FlatGrid } from "react-native-super-grid";
@@ -17,11 +17,11 @@ export default class SalatTimes extends React.Component {
       latitude: null,
       longitude: null,
       times: [
-        { name: "Fajr", time: "" },
-        { name: "Dhuhr", time: "" },
-        { name: "Asr", time: "" },
-        { name: "Maghrib", time: "" },
-        { name: "Isha", time: "" }
+        { name: "Fajr", time: null },
+        { name: "Dhuhr", time: null },
+        { name: "Asr", time: null },
+        { name: "Maghrib", time: null },
+        { name: "Isha", time: null }
       ]
     };
   }
@@ -48,7 +48,8 @@ export default class SalatTimes extends React.Component {
     let location = await Location.getCurrentPositionAsync({});
     this.setState({
       latitude: JSON.stringify(location.coords.latitude),
-      longitude: JSON.stringify(location.coords.longitude)
+      longitude: JSON.stringify(location.coords.longitude),
+
     });
     let URL = "http://api.aladhan.com/v1/timings/" +Math.floor(Date.now() / 1000) + "?latitude=";
     URL +=
@@ -96,6 +97,15 @@ export default class SalatTimes extends React.Component {
     this._getLocationAsync();
   }
   render() {
+    if (!this.state.times[0].time) {
+      return (
+        <ActivityIndicator
+          animating={true}
+          style={styles.indicator}
+          size="large"
+        />
+      );
+    }
     return (
       <FlatGrid
         itemDimension={width - 10}
