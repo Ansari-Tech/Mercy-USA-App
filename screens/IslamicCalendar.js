@@ -16,13 +16,10 @@ export default class IslamicCalendar extends React.Component {
     };
   }
   getDate(date) {
-    console.log(toHijri(new Date(date.dateString)));
+   // console.log(toHijri(new Date(date.dateString)));
     return toHijri(new Date(date.dateString)).date;
   }
   render() {
-    const mark = {
-      "2019-10-05": { selected: true, marked: true }
-    };
     return (
       <View>
         <Calendar
