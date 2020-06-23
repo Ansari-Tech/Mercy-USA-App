@@ -129,8 +129,8 @@ const styles = StyleSheet.create({
     elevation: 12
   },
   itemName: {
-    fontSize: 30,
-    alignSelf: "center",
+    fontSize: 25,
+    alignSelf: "flex-start",
     color: "#fff"
   },
   whatWeDo: {
