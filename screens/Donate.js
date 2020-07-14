@@ -12,10 +12,12 @@ import {
   AsyncStorage,
   ActivityIndicator,
   Linking
-} from "react-native";
+} from "react-native";  
 import NavigationService from "../NavigationService";
 import { Input, Overlay, Card } from "react-native-elements";
 const Dimensions = require("Dimensions");
+const axios = require('axios');
+const cheerio = require('react-native-cheerio');
 const { width, height } = Dimensions.get("window");
 import { MKTextField } from "react-native-material-kit";
 import { TextInputMask } from "react-native-masked-text";
@@ -28,6 +30,7 @@ export default class Donate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      designations: [],
       user: {
         complete: "",
         fname: "",
@@ -85,6 +88,11 @@ export default class Donate extends React.Component {
           this.setState({ isLoading: false });
         }
       });
+
+    this.getDesignations(function(scrapedDesignations) {
+        this.setState({designations: scrapedDesignations});
+        this.setState({designation: scrapedDesignations[0]});
+      }.bind(this))
   };
   addDonation() {
     AsyncStorage.setItem("donations", JSON.stringify(this.state.donations));
@@ -97,12 +105,12 @@ export default class Donate extends React.Component {
       "&donations[]=" +
       this.state.amount +
       "|" +
-      this.state.designation +
+      encodeURIComponent(this.state.designation) +
       "&total=" +
       trimmedAmount +
       "&comments=" +
       this.state.comment;
-    console.log(url);
+    console.log(encodeURI(url));
     Linking.openURL(url);
     donations[2] = donations[1];
     donations[1] = donations[0];
@@ -114,21 +122,45 @@ export default class Donate extends React.Component {
     this.setState({ donations }, this.addDonation);
   }
   donateNoRearrange(url) {
+    console.log(this.state.designation)
     url +=
       "&donations[]=" +
       this.state.amount +
       "|" +
-      this.state.designation +
+      encodeURIComponent(this.state.designation) +
       "&total=" +
       this.state.amount +
       "&comments=" +
       this.state.comment;
     Linking.openURL(url);
   }
+
+  getDesignations(callback){
+    axios("https://mercyusa.org/donate-now/")
+    .then(response => {
+      let scrapedDesignations = [];
+      const html = response.data;
+      const $ = cheerio.load(html);
+      let selector = cheerio.load($.html($('[data-label="Designation"]')[0].childNodes[0]));
+      selector('select').find('option').each((i,op) => {
+        scrapedDesignations.push($(op).text());
+        let picker= <Picker.Item label={$(op).text()} value={$(op).text()} />
+     })
+     callback(scrapedDesignations);
+    })
+    .catch(console.error);
+  }
   render() {
-    if (this.state.isLoading) {
-      return <ActivityIndicator />;
+    if(this.state.designations.length == 0) {
+      return (
+        <ActivityIndicator
+          animating={true}
+          style={styles.indicator}
+          size="large"
+        />
+      );
     } else {
+      console.log(this.state.designations);
       let url =
         "https://mercyusa.org/donate-now/" +
         "?first_name=" +
@@ -351,67 +383,11 @@ export default class Donate extends React.Component {
                   this.setState({ designation: itemValue })
                 }
               >
-                <Picker.Item label="Greatest Need" value="Greatest Need" />
-                <Picker.Item
-                  label="Somalia Safe Water Project"
-                  value="Somalia Safe Water Project"
-                />
-                <Picker.Item
-                  label="Measles Prevention and Healthcare in Lebanon"
-                  value="Measles Prevention and Healthcare in Lebanon"
-                />
-                <Picker.Item
-                  label="Syria Humanitarian Relief"
-                  value="Syria Humanitarian Relief"
-                />
-                <Picker.Item
-                  label="Gaza School for Blind Children"
-                  value="Gaza School for Blind Children"
-                />
-                <Picker.Item
-                  label="Vocational Training Program for Palestinian Refugee Youth in Lebanon"
-                  value="Vocational Training Program for Palestinian Refugee Youth in Lebanon"
-                />
-                <Picker.Item
-                  label="Somalia Health Programs"
-                  value="Somalia Health Programs"
-                />
-                <Picker.Item label="Ramadan Iftar" value="Ramadan Iftar" />
-                <Picker.Item
-                  label="Zakat ul-Fitr/Fitra"
-                  value="Zakat ul-Fitr/Fitra"
-                />
-                <Picker.Item label="Zakat Fund" value="Zakat Fun" />
-                <Picker.Item
-                  label="Eid Qurbani/Udhia"
-                  value="Eid Qurbani/Udhia"
-                />
-                <Picker.Item
-                  label="Bosnia Orphans & Economic Development"
-                  value="Bosnia Orphans & Economic Development"
-                />
-                <Picker.Item
-                  label="Indonesia Small Farmer Economic Development"
-                  value="Indonesia Small Farmer Economic Development"
-                />
-                <Picker.Item
-                  label="Education Projects"
-                  value="Education Projects"
-                />
-                <Picker.Item
-                  label="Albania Orphans & Economic Development"
-                  value="Albania Orphans & Economic Development"
-                />
-                <Picker.Item
-                  label="Burma Rohingya Humanitarian Relief"
-                  value="Burma Rohingya Humanitarian Relief"
-                />
-                <Picker.Item
-                  label="Support for Refugees and the Homeless & Others in Need in the USA"
-                  value="Support for Refugees and the Homeless & Others in Need in the USA"
-                />
-                <Picker.Item label="Yemen Food Aid" value="Yemen Food Aid" />
-              </Picker>
+                              {this.state.designations.map((item, index) => {
+                  return (<Picker.Item label={item} value={item} key={index}/>) 
+              })}
+              </Picker> 
+               
               <Button
                 title="Donate"
                 onPress={() => {
@@ -419,6 +395,7 @@ export default class Donate extends React.Component {
                   this.setState({ isVisible: false });
                 }}
               />
+
             </View>
           </Overlay>
           <Card
@@ -432,7 +409,7 @@ export default class Donate extends React.Component {
           </Card>
         </View>
       );
-    }
+              }
   }
 }
 /*
