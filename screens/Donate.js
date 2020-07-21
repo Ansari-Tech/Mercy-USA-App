@@ -15,7 +15,7 @@ import {
 } from "react-native";  
 import NavigationService from "../NavigationService";
 import { Input, Overlay, Card } from "react-native-elements";
-const Dimensions = require("Dimensions");
+const Dimensions = require('react-native').Dimensions;
 const axios = require('axios');
 const cheerio = require('react-native-cheerio');
 const { width, height } = Dimensions.get("window");
@@ -379,6 +379,7 @@ export default class Donate extends React.Component {
               />
               <Picker
                 selectedValue={this.state.designation}
+                pickerTextEllipsesLen={800}
                 onValueChange={(itemValue, itemIndex) =>
                   this.setState({ designation: itemValue })
                 }

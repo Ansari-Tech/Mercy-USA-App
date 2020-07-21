@@ -12,7 +12,7 @@ import { Divider, Overlay } from "react-native-elements";
 import { MKTextField } from "react-native-material-kit";
 import { TextInputMask } from "react-native-masked-text";
 
-const Dimensions = require("Dimensions");
+const Dimensions = require('react-native').Dimensions;
 const { width } = Dimensions.get("window");
 
 const cashText = MKTextField.textfield()

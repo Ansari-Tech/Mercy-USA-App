@@ -12,7 +12,7 @@ import {
 import NavigationService from "../NavigationService";
 import { MKTextField } from "react-native-material-kit";
 import { TextInputMask } from "react-native-masked-text";
-const Dimensions = require("Dimensions");
+const Dimensions = require('react-native').Dimensions;
 const { width } = Dimensions.get("window");
 const Textfield = MKTextField.textfield()
   .withPlaceholder("Text...")

@@ -13,7 +13,7 @@ import {
 import NavigationService from "../NavigationService";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import { Input } from "react-native-elements";
-const Dimensions = require("Dimensions");
+const Dimensions = require('react-native').Dimensions;
 const { width } = Dimensions.get("window");
 
 export default class UserInfo extends React.Component {

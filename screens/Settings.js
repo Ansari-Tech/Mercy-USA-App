@@ -2,7 +2,7 @@ import React from "react";
 import { View, Button, Text, StyleSheet, ScrollView } from "react-native";
 import NavigationService from "../NavigationService";
 import { Input, ListItem } from "react-native-elements";
-const Dimensions = require("Dimensions");
+const Dimensions = require('react-native').Dimensions;
 const { width } = Dimensions.get("window");
 const aboutSection = [
   {

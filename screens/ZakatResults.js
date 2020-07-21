@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import NavigationService from "../NavigationService";
 import { Input, Overlay } from "react-native-elements";
-const Dimensions = require("Dimensions");
+const Dimensions = require('react-native').Dimensions;
 const { width } = Dimensions.get("window");
 
 //api call: https://www.quandl.com/api/v3/datasets/WGC/GOLD_DAILY_USD.json?limit=1&api_key=gPxV2UWAz3weZ2UTAzUr
