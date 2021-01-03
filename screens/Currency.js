@@ -1,32 +1,50 @@
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import {
-  View, Text, StyleSheet, TextInput, Picker,
+  View, Text, StyleSheet, TextInput, Picker, ActivityIndicator,
 } from 'react-native';
-// import NavigationService from '../NavigationService';
+import NavigationService from '../NavigationService';
 
 export default class Currency extends React.Component {
+  static navigationOptions = {
+    title: 'Currency Conversion',
+  };
+
   constructor(props) {
     super(props);
 
     this.state = {
       fromValue: 1,
-      toValue: 1.2271,
       fromUnit: 'EUR',
       toUnit: 'USD',
+      rate: null,
     };
   }
 
-  getConversions = (fromUnit, callback) => fetch(`https://api.exchangeratesapi.io/latest?base=${fromUnit}`)
+  componentDidMount() {
+    this.getConversions((rateFromAPICall) => {
+      this.setState({ rate: rateFromAPICall[Object.keys(rateFromAPICall)[0]] }, () => {
+        console.log(this.state.rate);
+      });
+    });
+  }
+
+  getConversions = (callback) => fetch(`https://api.exchangeratesapi.io/latest?base=${this.state.fromUnit}&symbols=${this.state.toUnit}`)
     .then((response) => response.json())
     .then((responseJson) => {
-      console.log(responseJson);
       callback(responseJson.rates);
     });
 
   render() {
-    const {
-      fromUnit, fromValue, toValue, toUnit,
-    } = this.state;
+    if (!this.state.rate) {
+      return (
+        <ActivityIndicator
+          animating
+          style={styles.indicator}
+          size="large"
+        />
+      );
+    }
     const currencyList = {
       USD: 'US Dollar ',
       EUR: 'Euro',
@@ -62,33 +80,64 @@ export default class Currency extends React.Component {
       THB: 'Thai baht',
       ZAR: 'South African rand',
     };
+    const symbolList = {
+      USD: '$',
+      EUR: '€',
+      JPY: '¥',
+      BGN: 'Лв',
+      CZK: 'Kč',
+      DKK: 'kr',
+      GBP: '£',
+      HUF: 'Ft',
+      PLN: 'zł',
+      RON: 'L',
+      SEK: 'kr',
+      CHF: 'CHF',
+      ISK: 'Íkr',
+      NOK: 'kr',
+      HRK: 'kn',
+      RUB: '₽',
+      TRY: '₺',
+      AUD: '$',
+      BRL: 'R$',
+      CAD: '$',
+      CNY: '¥ ',
+      HKD: '元',
+      IDR: 'Rp',
+      ILS: '₪',
+      INR: '₹',
+      KRW: '₩',
+      MXN: '$',
+      MYR: 'RM',
+      NZD: 'RM',
+      PHP: '₱',
+      SGD: '$',
+      THB: '฿',
+      ZAR: 'R',
+    };
     return (
       <View style={styles.mainView}>
         <View style={styles.fromToView}>
           <TextInput
-            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+            style={styles.input}
             keyboardType="numeric"
             autoFocus
             onChangeText={(enteredFromValue) => {
-              this.getConversions(enteredFromValue, (ratesFromAPICall) => {
-                console.log(ratesFromAPICall);
-                this.setState({ rates: ratesFromAPICall, toValue: 0 });
-              });
-              this.setState({ toValue: 0, fromValue: 0 });
+              this.setState({ fromValue: enteredFromValue.slice(2) });
             }}
-            value={fromValue.toString()}
+            value={`${symbolList[this.state.fromUnit]} ${this.state.fromValue.toString()}`}
           />
           <Text>From</Text>
 
           <Picker
             mode="dropdown"
-            selectedValue={fromUnit}
+            selectedValue={this.state.fromUnit}
             onValueChange={(selectedFromUnit) => {
-              this.setState({ fromUnit: selectedFromUnit });
-              this.getConversions(fromUnit, (rates) => {
-                console.log(rates);
+              this.setState({ fromUnit: selectedFromUnit }, () => {
+                this.getConversions((ratesFromAPICall) => {
+                  this.setState({ rate: ratesFromAPICall[Object.keys(ratesFromAPICall)[0]] });
+                });
               });
-              this.setState({ toValue: 0 });
             }}
           >
             {Object.keys(currencyList).map((key) => (
@@ -99,19 +148,19 @@ export default class Currency extends React.Component {
         <View style={styles.fromToView}>
           <TextInput
             editable={false}
-            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-            value={toValue.toFixed(3)}
+            style={styles.input}
+            value={`${symbolList[this.state.toUnit]} ${(this.state.rate * this.state.fromValue).toFixed(2)}`}
           />
           <Text>To</Text>
           <Picker
             mode="dropdown"
-            selectedValue={toUnit}
-            onValueChange={(toUnit, unit) => {
-              this.setState({ toUnit });
-              const convertedVal = convert(fromValue)
-                .from(fromUnit)
-                .to(toUnit);
-              this.setState({ toValue: convertedVal });
+            selectedValue={this.state.toUnit}
+            onValueChange={(selectedToUnit) => {
+              this.setState({ toUnit: selectedToUnit }, () => {
+                this.getConversions((ratesFromAPICall) => {
+                  this.setState({ rate: ratesFromAPICall[Object.keys(ratesFromAPICall)[0]] });
+                });
+              });
             }}
           >
             {Object.keys(currencyList).map((key) => (
@@ -134,5 +183,11 @@ const styles = StyleSheet.create({
   },
   picker: {
     flex: 1,
+  },
+  input: {
+    paddingLeft: 10,
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
   },
 });
