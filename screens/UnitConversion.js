@@ -17,12 +17,8 @@ export default class UnitConversion extends React.Component {
     const conversions = [
       { name: "Measurements", id: "Measurements" },
       {
-        name: "Distance",
-        id: "distance"
-      },
-      {
         name: "Currency",
-        id: "currency"
+        id: "Currency"
       }
     ];
     return (

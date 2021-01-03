@@ -39,7 +39,11 @@ export default class HomeScreen extends React.Component {
       },
       {
         name: "Unit Conversions",
-        id: "Measurements"
+        id: "UnitConversion"
+      },
+      {
+        name: "Currency Conversions",
+        id: "Currency"
       },
       {
         name: "Salat Times",
