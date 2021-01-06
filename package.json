@@ -11,7 +11,7 @@
     "flow coverage": "flow coverage"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.5",
     "convert-units": "^2.3.4",
     "expo": "^38.0.10",
