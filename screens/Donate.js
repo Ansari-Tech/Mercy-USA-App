@@ -157,6 +157,7 @@ export default class Donate extends React.Component {
           animating={true}
           style={styles.indicator}
           size="large"
+          color="#005487"
         />
       );
     } else {

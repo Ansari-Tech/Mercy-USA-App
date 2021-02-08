@@ -1,29 +1,32 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   Button,
   Text,
   StyleSheet,
   Animated,
-  ActivityIndicator
-} from "react-native";
-import NavigationService from "../NavigationService";
-import { Input, Overlay } from "react-native-elements";
-const Dimensions = require('react-native').Dimensions;
-const { width } = Dimensions.get("window");
+  ActivityIndicator,
+} from 'react-native';
+import { Input, Overlay } from 'react-native-elements';
+import NavigationService from '../NavigationService';
 
-//api call: https://www.quandl.com/api/v3/datasets/WGC/GOLD_DAILY_USD.json?limit=1&api_key=gPxV2UWAz3weZ2UTAzUr
+const { Dimensions } = require('react-native');
+
+const { width } = Dimensions.get('window');
+
+// api call: https://www.quandl.com/api/v3/datasets/WGC/GOLD_DAILY_USD.json?limit=1&api_key=gPxV2UWAz3weZ2UTAzUr
 export default class ZakatResults extends React.Component {
   static navigationOptions = {
-    title: "Your Zakat"
+    title: 'Your Zakat',
   };
+
   constructor(props) {
     super(props);
     this.state = {
       isVisible: true,
       isLoading: true,
       isNoInternet: false,
-      fadeAnim: new Animated.Value(0)
+      fadeAnim: new Animated.Value(0),
     };
     this.params = this.props.navigation.state.params;
   }
@@ -31,36 +34,36 @@ export default class ZakatResults extends React.Component {
   componentDidMount() {
     Animated.timing(this.state.fadeAnim, {
       toValue: 1,
-      duration: 1000000
+      duration: 1000000,
     }).start();
-    const URL =
-      "https://www.quandl.com/api/v3/datasets/WGC/GOLD_DAILY_USD.json?limit=1&api_key=gPxV2UWAz3weZ2UTAzUr";
+    const URL = 'https://www.quandl.com/api/v3/datasets/WGC/GOLD_DAILY_USD.json?limit=1&api_key=gPxV2UWAz3weZ2UTAzUr';
     return fetch(URL)
-      .then(response => response.json())
-      .then(responseJson => {
+      .then((response) => response.json())
+      .then((responseJson) => {
         this.setState(
           {
             isLoading: false,
-            goldValue: responseJson.dataset.data[0][1]
+            goldValue: responseJson.dataset.data[0][1],
           },
-          function() {}
+          () => {},
         );
       })
-      .catch(error => {
+      .catch((error) => {
         this.state.isNoInternet = true;
       });
   }
+
   render() {
-    let { fadeAnim } = this.state.fadeAnim;
+    const { fadeAnim } = this.state.fadeAnim;
     if (this.state.isLoading) {
       return (
         <View
           style={{
             flex: 1,
-            padding: 20
+            padding: 20,
           }}
         >
-          <ActivityIndicator />
+          <ActivityIndicator color="#005487" />
         </View>
       );
     }
@@ -77,14 +80,12 @@ export default class ZakatResults extends React.Component {
                 placeholder="Current Value of Gold in USD"
                 keyboardType="numeric"
                 leftIcon={{
-                  type: "material-community",
-                  name: "cash-multiple"
+                  type: 'material-community',
+                  name: 'cash-multiple',
                 }}
-                onChangeText={goldValue =>
-                  this.setState({
-                    goldValue
-                  })
-                }
+                onChangeText={(goldValue) => this.setState({
+                  goldValue,
+                })}
               />
               <Button
                 title="Continue"
@@ -92,7 +93,7 @@ export default class ZakatResults extends React.Component {
                   this.setState({
                     isVisible: false,
                     isLoading: false,
-                    isNoInternet: false
+                    isNoInternet: false,
                   });
                 }}
               />
@@ -101,23 +102,22 @@ export default class ZakatResults extends React.Component {
         </View>
       );
     }
-    let nisab = this.state.goldValue * 3;
-    let total =
-      parseFloat(this.params.asset.cash.replace("$", "").replace(",", "")) +
-      parseFloat(this.params.asset.gold.replace("$", "").replace(",", "")) +
-      parseFloat(this.params.asset.jewlery.replace("$", "").replace(",", "")) +
-      parseFloat(this.params.loan.ndLoans.replace("$", "").replace(",", "")) +
-      parseFloat(this.params.loan.loans.replace("$", "").replace(",", "")) +
-      parseFloat(this.params.loan.stock.replace("$", "").replace(",", "")) +
-      parseFloat(
-        this.params.business.inventory.replace("$", "").replace(",", "")
-      ) +
-      parseFloat(
-        this.params.business.realEstate.replace("$", "").replace(",", "")
-      ) +
-      parseFloat(this.params.business.profit.replace("$", "").replace(",", ""));
+    const nisab = this.state.goldValue * 3;
+    const total = parseFloat(this.params.asset.cash.replace('$', '').replace(',', ''))
+      + parseFloat(this.params.asset.gold.replace('$', '').replace(',', ''))
+      + parseFloat(this.params.asset.jewlery.replace('$', '').replace(',', ''))
+      + parseFloat(this.params.loan.ndLoans.replace('$', '').replace(',', ''))
+      + parseFloat(this.params.loan.loans.replace('$', '').replace(',', ''))
+      + parseFloat(this.params.loan.stock.replace('$', '').replace(',', ''))
+      + parseFloat(
+        this.params.business.inventory.replace('$', '').replace(',', ''),
+      )
+      + parseFloat(
+        this.params.business.realEstate.replace('$', '').replace(',', ''),
+      )
+      + parseFloat(this.params.business.profit.replace('$', '').replace(',', ''));
 
-    let owed = Math.ceil((total < nisab ? 0 : total * 0.025) * 100) / 100;
+    const owed = Math.ceil((total < nisab ? 0 : total * 0.025) * 100) / 100;
 
     if (owed > 0) {
       return (
@@ -125,53 +125,60 @@ export default class ZakatResults extends React.Component {
           <Text style={styles.subTitle}>Your calculated zakat is...</Text>
           <Animated.View
             style={{
-              justifyContent: "center",
-              alignItems: "center",
-              opacity: fadeAnim
+              justifyContent: 'center',
+              alignItems: 'center',
+              opacity: fadeAnim,
             }}
           />
-          <Text style={styles.title}>${owed}!</Text>
+          <Text style={styles.title}>
+            $
+            {owed}
+            !
+          </Text>
           <Button
             title="Donate now"
             onPress={() => {
-              NavigationService.navigate("Donate", {
+              NavigationService.navigate('Donate', {
                 isVisible: true,
                 amount: owed.toString(),
-                designation: "Zakat Fund"
+                designation: 'Zakat Fund',
               });
             }}
           />
         </View>
       );
-    } else {
-      return (
-        <View style={styles.mainResult}>
-          <Text style={styles.subTitle}>Your calculated zakat is...</Text>
-          <Animated.View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              opacity: fadeAnim
-            }}
-          />
-          <Text style={styles.title}>${owed}!</Text>
-        </View>
-      );
     }
+    return (
+      <View style={styles.mainResult}>
+        <Text style={styles.subTitle}>Your calculated zakat is...</Text>
+        <Animated.View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            opacity: fadeAnim,
+          }}
+        />
+        <Text style={styles.title}>
+          $
+          {owed}
+          !
+        </Text>
+      </View>
+    );
   }
 }
 const styles = StyleSheet.create({
   title: {
     fontSize: 35,
-    color: "green"
+    color: 'green',
   },
   subTitle: {
     fontSize: 20,
-    paddingTop: 10
+    paddingTop: 10,
   },
   mainResult: {
     paddingTop: 15,
-    justifyContent: "center",
-    alignItems: "center"
-  }
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

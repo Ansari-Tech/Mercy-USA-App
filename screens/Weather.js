@@ -172,6 +172,7 @@ export default class Weather extends React.Component {
           animating={true}
           style={styles.indicator}
           size="large"
+          color="#005487"
         />
       );
     }

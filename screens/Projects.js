@@ -319,7 +319,7 @@ export default class Projects extends React.Component {
         </View>
       );
     }
-    return <ActivityIndicator />;
+    return <ActivityIndicator color="#005487" />;
   }
 }
 

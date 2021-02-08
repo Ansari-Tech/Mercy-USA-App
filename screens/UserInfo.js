@@ -54,7 +54,7 @@ export default class UserInfo extends React.Component {
   }
   render() {
     if (this.state.isLoading) {
-      return <ActivityIndicator />;
+      return <ActivityIndicator  color="#005487"/>;
     }
     return (
       <KeyboardAwareScrollView

@@ -42,6 +42,7 @@ export default class Currency extends React.Component {
           animating
           style={styles.indicator}
           size="large"
+          color="#005487"
         />
       );
     }
